@@ -1,10 +1,17 @@
+const postForm = document.querySelector("#create-new-post");
+const newPostInput = document.querySelector("#new-post");
+const newPostsDiv = document.querySelector("#new-posts-div");
+
+let newPost;
+
+//fetchar
 fetch("https://dummyjson.com/posts?limit=3")
   .then((response) => response.json())
   .then((response) => {
     renderPosts(response.posts);
   });
 
-fetch("https://dummyjson.com/posts/add", {
+/*fetch("https://dummyjson.com/posts/add", {
   method: "POST",
   headers: {"Content-Type": "application/json"},
   body: JSON.stringify({
@@ -15,8 +22,24 @@ fetch("https://dummyjson.com/posts/add", {
   })
 })
 .then(response => response.json())
-.then(console.log);
+.then(console.log);*/
 
+//tar in data från användaren
+postForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  newPost = newPostInput.value;
+  renderNewPost(newPost);
+  postForm.reset();
+})
+
+//skriver ut data i form av nya posts
+function renderNewPost(post) {
+    let newArticle = document.createElement("p");
+    newPostsDiv.append(newArticle);
+    newArticle.innerText = post;
+}
+
+//skriver ut posts från DummyJSON
 function renderPosts(posts) {
   for (let i = 0; i < posts.length; i++) {
     let post = posts[i];
@@ -37,3 +60,5 @@ function renderPosts(posts) {
     article.append(postTags);
   }
 }
+
+
