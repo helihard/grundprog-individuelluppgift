@@ -53,7 +53,7 @@ function renderNewPost(post) {
     let newTags = document.createElement("p");
     newTitle.innerText = post.title;
     newPostBody.innerText = post.body;
-    newTags.innerText = post.tags;
+    newTags.innerText = post.tags.join(", ");
     newArticle.append(newTitle);
     newArticle.append(newPostBody);
     newArticle.append(newTags);
@@ -95,7 +95,7 @@ function renderPosts(posts) {
     article.append(postBody);
 
     let postTags = document.createElement("p");
-    postTags.innerText = post.tags;
+    postTags.innerText = post.tags.join(", ");
     article.append(postTags);
   }
 }
