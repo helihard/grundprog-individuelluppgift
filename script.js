@@ -2,28 +2,9 @@ const postForm = document.querySelector("#create-new-post");
 const newPostInput = document.querySelector("#new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 
-//fetchar
-fetch("https://dummyjson.com/posts?limit=3")
-  .then((response) => response.json())
-  .then((response) => {
-    renderPosts(response.posts);
-  });
-
-/*fetch("https://dummyjson.com/posts/add", {
-  method: "POST",
-  headers: {"Content-Type": "application/json"},
-  body: JSON.stringify({
-    title: "Nytt inlägg",
-    body: "Inläggets text",
-    userId: 1,
-    tags: ["en tagg", "en annan tagg", "en tredje tagg"]
-  })
-})
-.then(response => response.json())
-.then(console.log);*/
-
 postForm.addEventListener("submit", getFormData);
 
+//hämtar data från formulär
 function getFormData(event) {
   event.preventDefault();
 
@@ -41,44 +22,32 @@ function getFormData(event) {
     "body": this.newbody.value,
     "tags": checkedTags
   }
+
   renderNewPost(newPost);
   postForm.reset();
 }
 
-//skriver ut textdata i form av nya posts
+//skriver ut data i form av nytt inlägg
 function renderNewPost(post) {
-    let newArticle = document.createElement("article");
-    let newTitle = document.createElement("h2");
-    let newPostBody = document.createElement("p");
-    let newTags = document.createElement("p");
-    newTitle.innerText = post.title;
-    newPostBody.innerText = post.body;
-    newTags.innerText = post.tags.join(", ");
-    newArticle.append(newTitle);
-    newArticle.append(newPostBody);
-    newArticle.append(newTags);
-    newPostsDiv.append(newArticle);
+  let newArticle = document.createElement("article");
+  let newTitle = document.createElement("h2");
+  let newPostBody = document.createElement("p");
+  let newTags = document.createElement("p");
+  newTitle.innerText = post.title;
+  newPostBody.innerText = post.body;
+  newTags.innerText = post.tags.join(", ");
+  newArticle.append(newTitle, newPostBody, newTags);
+  newPostsDiv.append(newArticle);
 }
 
+//hämtar inlägg från DummyJSON
+fetch("https://dummyjson.com/posts?limit=3")
+  .then((response) => response.json())
+  .then((response) => {
+    renderPosts(response.posts);
+  });
 
-//tar in data från användaren i form av text
-/*postForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  newPost = newPostInput.value;
-  renderNewPost(newPost);
-  postForm.reset();
-})
-
-//test med att ta in data från användaren i form av checkboxes 
-postForm.addEventListener("change", (event) => {
-  if (event.target.type === "checkbox") {
-    const checked = document.querySelectorAll("input[type='checkbox']:checked");
-    newTags = Array.from(checked).map(tag => tag.value)
-    console.log(newTags);
-  }
-})*/
-
-//skriver ut posts från DummyJSON
+//skriver ut inlägg från DummyJSON
 function renderPosts(posts) {
   for (let i = 0; i < posts.length; i++) {
     let post = posts[i];
@@ -99,5 +68,3 @@ function renderPosts(posts) {
     article.append(postTags);
   }
 }
-
-
