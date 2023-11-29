@@ -2,9 +2,6 @@ const postForm = document.querySelector("#create-new-post");
 const newPostInput = document.querySelector("#new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 
-let newPost;
-let newTags = [];
-
 //fetchar
 fetch("https://dummyjson.com/posts?limit=3")
   .then((response) => response.json())
@@ -25,8 +22,47 @@ fetch("https://dummyjson.com/posts?limit=3")
 .then(response => response.json())
 .then(console.log);*/
 
+postForm.addEventListener("submit", getFormData);
+
+function getFormData(event) {
+  event.preventDefault();
+
+  const newPostTags = document.querySelectorAll(".new-tag");
+  let checkedTags = [];
+
+  for (let tag of newPostTags) {
+    if (tag.checked === true && checkedTags.length < 3) {
+      checkedTags.push(tag.value);
+    }
+  }
+
+  let newPost = {
+    "title": this.newtitle.value,
+    "body": this.newbody.value,
+    "tags": checkedTags
+  }
+  renderNewPost(newPost);
+  postForm.reset();
+}
+
+//skriver ut textdata i form av nya posts
+function renderNewPost(post) {
+    let newArticle = document.createElement("article");
+    let newTitle = document.createElement("h2");
+    let newPostBody = document.createElement("p");
+    let newTags = document.createElement("p");
+    newTitle.innerText = post.title;
+    newPostBody.innerText = post.body;
+    newTags.innerText = post.tags;
+    newArticle.append(newTitle);
+    newArticle.append(newPostBody);
+    newArticle.append(newTags);
+    newPostsDiv.append(newArticle);
+}
+
+
 //tar in data från användaren i form av text
-postForm.addEventListener("submit", (event) => {
+/*postForm.addEventListener("submit", (event) => {
   event.preventDefault();
   newPost = newPostInput.value;
   renderNewPost(newPost);
@@ -40,14 +76,7 @@ postForm.addEventListener("change", (event) => {
     newTags = Array.from(checked).map(tag => tag.value)
     console.log(newTags);
   }
-})
-
-//skriver ut textdata i form av nya posts
-function renderNewPost(post) {
-    let newArticle = document.createElement("p");
-    newPostsDiv.append(newArticle);
-    newArticle.innerText = post;
-}
+})*/
 
 //skriver ut posts från DummyJSON
 function renderPosts(posts) {

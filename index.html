@@ -6,20 +6,24 @@
   </head>
   <body>
     <h1>Mini-reddit</h1>
-    <form id="create-new-post">
-      <input type="text" id="new-post" placeholder="What's on your mind?" required>
-      <button type="submit">Submit</button>
+    <form id="create-new-post" action="" method="post">
+      <input type="text" name="newtitle" placeholder="Title">
       <br>
-      <input type="checkbox" id="american" value="american"><label for="american">american</label>
-      <input type="checkbox" id="classic" value="classic"><label for="classic">classic</label>
-      <input type="checkbox" id="crime" value="crime"><label for="crime">crime</label>
-      <input type="checkbox" id="english" value="english"><label for="english">english</label>
-      <input type="checkbox" id="fiction", value="fiction"><label for="fiction">fiction</label>
-      <input type="checkbox" id="french" value="french"><label for="french">french</label>
-      <input type="checkbox" id="history" value="history"><label for="history">history</label>
-      <input type="checkbox" id="love" value="love"><label for="love">love</label>
-      <input type="checkbox" id="magical" value="magical"><label for="magical">magical</label>
-      <input type="checkbox" id="mystery" value="mystery"><label for="mystery">mystery</label>
+      <textarea name="newbody" placeholder="What's on your mind?"></textarea>
+      <br>
+      <input type="checkbox" class="new-tag" id="american" name="newTags[]" value="american"><label for="american">american</label>
+      <input type="checkbox" class="new-tag" id="classic" name="newTags[]" value="classic"><label for="classic">classic</label>
+      <input type="checkbox" class="new-tag" id="crime" name="newTags[]" value="crime"><label for="crime">crime</label>
+      <input type="checkbox" class="new-tag" id="english" name="newTags[]" value="english"><label for="english">english</label>
+      <input type="checkbox" class="new-tag" id="fiction" name="newTags[]" value="fiction"><label for="fiction">fiction</label>
+      <input type="checkbox" class="new-tag" id="french" name="newTags[]" value="french"><label for="french">french</label>
+      <input type="checkbox" class="new-tag" id="history" name="newTags[]" value="history"><label for="history">history</label>
+      <input type="checkbox" class="new-tag" id="love" name="newTags[]" value="love"><label for="love">love</label>
+      <input type="checkbox" class="new-tag" id="magical" name="newTags[]" value="magical"><label for="magical">magical</label>
+      <input type="checkbox" class="new-tag" id="mystery" name="newTags[]" value="mystery"><label for="mystery">mystery</label>
+      <br>
+      <button type="submit">Submit</button>
+
     </form>
     
     <div id="new-posts-div"></div>
