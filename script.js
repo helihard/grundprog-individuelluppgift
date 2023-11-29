@@ -8,7 +8,7 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  const newPostTags = document.querySelectorAll(".new-tag");
+  const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
   let checkedTags = [];
 
   for (let tag of newPostTags) {
@@ -23,8 +23,29 @@ function getFormData(event) {
     "tags": checkedTags
   }
 
+  if (newPost.title === "") {
+    newPost.title = renderDefaultTitle(newPost.body);
+  } else {
+    newPost.title;
+  }
+
   renderNewPost(newPost);
   postForm.reset();
+}
+
+function renderDefaultTitle(body) {
+  const newTitleArray = body.split(" ");
+  const defaultTitleArray = [];
+
+  for (let i = 0; i < newTitleArray.length; i++) {
+    let word = newTitleArray[i];
+
+    if (i < 6) {
+      defaultTitleArray.push(word);
+    }
+  }
+  let defaultTitle = defaultTitleArray.join(" ");
+  return defaultTitle;
 }
 
 //skriver ut data i form av nytt inlägg
