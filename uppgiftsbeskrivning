@@ -1,0 +1,44 @@
+Individuell uppgift (G/VG)
+Denna uppgift är praktisk och individuell. Lycka till!
+
+Bedömning
+IG, G & VG
+
+Om kraven för G inte uppnås bedöms uppgiften med IG.
+
+Krav för G:
+
+1. Följ instruktionerna i beskrivningen
+2. Formatera koden: Små misstag ignoreras men större fel ger IG (om du blir osäker så kan du fråga läraren)
+3. Använd git för versionshantering
+
+Krav för VG:
+
+1. Uppnå krav för G
+2. Följ VG instruktioner i beskrivningen
+3. Gör passande commits med beskrivande meddelanden; det ska tydligt framstå vad du har gjort i varje commit
+
+Beskrivning
+Du skall i denna uppgift bygga en mini-reddit klon som använder DummyJSON posts för att hämta inlägg. Projektet skall endast bestå av en sida. Följande funktionalitet/delar skall finnas:
+
+1. Alla inlägg ska visas på sidan
+  - Hämta inlägg från DummyJSON
+  - Varje inlägg skall minst visa en titel, innehållet och tags
+2. En sektion för att skapa nya inlägg. Dessa hanteras bara lokalt och måste inte anroppa API:et.
+  - Det skall gå att välja titel, innehåll och tags
+
+För att nå VG behöver du även implementera:
+
+1. Möjlighet att "gilla" inlägg. Varje inlägg har en reactions variabel (referera till API:et).
+  - Nu måste varje inlägg också visa antal reaktioner/likes
+2. Spara allt i local storage så att informationen finns kvar även efter man uppdaterar sidan
+  - Alla inlägg ska sparas i local storage. De borde överskriva API:et om de finns sparade
+
+Övrig information:
+
+1. Det finns inga användare. Man vet inte vem som har skapat ett inlägg.
+2. Det går inte att logga in, eftersom det inte finns några användare.
+3. Du väljer design och tema själv. Det finns inga krav på hur "snygg" sidan skall vara.
+
+Inlämning
+Resultatet lämnas in på omniway med en git-länk. Se till att bjuda in läraren om repositoriet är privat.
