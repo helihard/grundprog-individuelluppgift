@@ -4,38 +4,41 @@ const newPostsDiv = document.querySelector("#new-posts-div");
 
 postForm.addEventListener("submit", getFormData);
 
-//hämtar data från formulär
+//hämtar data från formulär – om ingen inläggstext finns går det inte att posta inlägget
 function getFormData(event) {
   event.preventDefault();
 
   if (this.newbody.value === "") {
     prompt("Du måste skriva något i inlägget!") 
-    } else {
-
-    const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
-    let checkedTags = [];
-
-    for (let tag of newPostTags) {
-      if (tag.checked === true && checkedTags.length < 3) {
-        checkedTags.push(tag.value);
-      }
-    }
-
-    let newPost = {
-      "title": this.newtitle.value,
-      "body": this.newbody.value,
-      "tags": checkedTags
-    }
-
-    if (newPost.title === "") {
-      newPost.title = renderDefaultTitle(newPost.body);
-    } else {
-      newPost.title;
-    }
-
-    renderNewPost(newPost);
+  } else {
+    renderNewPost(compileNewPost(postForm));
     postForm.reset();
   }
+}
+
+//sammanställer data från formuläret till ett inlägg
+function compileNewPost(form) {
+  const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
+  let checkedTags = [];
+
+  for (let tag of newPostTags) {
+    if (tag.checked === true && checkedTags.length < 3) {
+      checkedTags.push(tag.value);
+    }
+  }
+
+  let newPost = {
+    "title": form.newtitle.value,
+    "body": form.newbody.value,
+    "tags": checkedTags
+  }
+
+  if (newPost.title === "") {
+    newPost.title = renderDefaultTitle(newPost.body);
+  } else {
+    newPost.title;
+  }
+  return newPost;
 }
 
 //genererar en titel från inläggets text om användaren inte ger sitt inlägg en titel
