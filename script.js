@@ -8,31 +8,37 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
-  let checkedTags = [];
+  if (this.newbody.value === "") {
+    prompt("Du måste skriva något i inlägget!") 
+    } else {
 
-  for (let tag of newPostTags) {
-    if (tag.checked === true && checkedTags.length < 3) {
-      checkedTags.push(tag.value);
+    const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
+    let checkedTags = [];
+
+    for (let tag of newPostTags) {
+      if (tag.checked === true && checkedTags.length < 3) {
+        checkedTags.push(tag.value);
+      }
     }
-  }
 
-  let newPost = {
-    "title": this.newtitle.value,
-    "body": this.newbody.value,
-    "tags": checkedTags
-  }
+    let newPost = {
+      "title": this.newtitle.value,
+      "body": this.newbody.value,
+      "tags": checkedTags
+    }
 
-  if (newPost.title === "") {
-    newPost.title = renderDefaultTitle(newPost.body);
-  } else {
-    newPost.title;
-  }
+    if (newPost.title === "") {
+      newPost.title = renderDefaultTitle(newPost.body);
+    } else {
+      newPost.title;
+    }
 
-  renderNewPost(newPost);
-  postForm.reset();
+    renderNewPost(newPost);
+    postForm.reset();
+  }
 }
 
+//genererar en titel från inläggets text om användaren inte ger sitt inlägg en titel
 function renderDefaultTitle(body) {
   const newTitleArray = body.split(" ");
   const defaultTitleArray = [];
