@@ -3,6 +3,7 @@ const newPostInput = document.querySelector("#new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 
 let newPost;
+let newTags = [];
 
 //fetchar
 fetch("https://dummyjson.com/posts?limit=3")
@@ -24,7 +25,7 @@ fetch("https://dummyjson.com/posts?limit=3")
 .then(response => response.json())
 .then(console.log);*/
 
-//tar in data från användaren
+//tar in data från användaren i form av text
 postForm.addEventListener("submit", (event) => {
   event.preventDefault();
   newPost = newPostInput.value;
@@ -32,7 +33,16 @@ postForm.addEventListener("submit", (event) => {
   postForm.reset();
 })
 
-//skriver ut data i form av nya posts
+//test med att ta in data från användaren i form av checkboxes 
+postForm.addEventListener("change", (event) => {
+  if (event.target.type === "checkbox") {
+    const checked = document.querySelectorAll("input[type='checkbox']:checked");
+    newTags = Array.from(checked).map(tag => tag.value)
+    console.log(newTags);
+  }
+})
+
+//skriver ut textdata i form av nya posts
 function renderNewPost(post) {
     let newArticle = document.createElement("p");
     newPostsDiv.append(newArticle);
