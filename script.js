@@ -8,7 +8,9 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  if (this.newbody.value === "") {
+  let trimmedNewBodyValue = this.newbody.value.trim();
+
+  if (this.newbody.value === "" || trimmedNewBodyValue.length === 0) {
     prompt("Du måste skriva något i inlägget!") 
   } else {
     renderNewPost(compileNewPost(postForm));
