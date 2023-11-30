@@ -1,6 +1,22 @@
 const postForm = document.querySelector("#create-new-post");
 const newPostInput = document.querySelector("#new-post");
+const submitBtn = document.querySelector("#submit-new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
+
+submitBtn.disabled = true;
+
+newPostInput.addEventListener('input', checkIfEmpty);
+
+function checkIfEmpty() {
+  let fieldToCheck = this.value;
+  let trimmedNewBodyValue = fieldToCheck.trim();
+
+  if (fieldToCheck !== "" && trimmedNewBodyValue.length !== 0) {
+    submitBtn.disabled = false;     
+  } else if (trimmedNewBodyValue.length === 0){
+    submitBtn.disabled = true;
+  }
+}
 
 postForm.addEventListener("submit", getFormData);
 
@@ -8,19 +24,15 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  let trimmedNewBodyValue = this.newbody.value.trim();
-
-  if (this.newbody.value === "" || trimmedNewBodyValue.length === 0) {
-    prompt("Du måste skriva något i inlägget!") 
-  } else {
-    renderNewPost(compileNewPost(postForm));
-    postForm.reset();
-  }
+  renderNewPost(compileNewPost(postForm));
+  postForm.reset();
+  submitBtn.disabled = true;
 }
+
 
 //sammanställer data från formuläret till ett inlägg
 function compileNewPost(form) {
-  const newPostTags = document.querySelectorAll(".new-tag"); //välj alla checkbox och lägg till klass här
+  const newPostTags = document.querySelectorAll(".new-tag");
   let checkedTags = [];
 
   for (let tag of newPostTags) {
