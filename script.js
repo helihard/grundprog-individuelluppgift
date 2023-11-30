@@ -65,6 +65,8 @@ function compileNewPost(form) {
     "tags": checkedTags
   }
 
+  newPost.body = newPost.body.trim();
+
   if (newPost.title === "") {
     newPost.title = renderDefaultTitle(newPost.body);
   } else {
@@ -75,17 +77,31 @@ function compileNewPost(form) {
 
 //genererar en titel från inläggets text om användaren inte ger sitt inlägg en titel
 function renderDefaultTitle(body) {
-  const newTitleArray = body.split(" ");
+  //delar upp inlägget i rader
+  //alla tomma rader blir en tom sträng i arrayen även om de innehåller mellanslag
+  const splitByNewLine = body.split(/\r?\n/).map(line => line.trim());
+  //console.log(splitByNewLine);
+  //första raden i inlägget
+  const firstLine = splitByNewLine[0];
+ 
+  //delar upp första raden i ord
+  const splitByWhiteSpace = firstLine.split(" ");
+  //console.log(splitByWhiteSpace);
   const defaultTitleArray = [];
 
-  for (let i = 0; i < newTitleArray.length; i++) {
-    let word = newTitleArray[i];
+  //lägger bestämt maxantal ord i arrayen som ska bli inläggets genererade titel
+  for (let i = 0; i < splitByWhiteSpace.length; i++) {
+    let word = splitByWhiteSpace[i];
 
     if (i < 6) {
       defaultTitleArray.push(word);
     }
   }
+
+  //skapar en string av arrayen
   let defaultTitle = defaultTitleArray.join(" ");
+
+  //returnerar den genererade titeln
   return defaultTitle;
 }
 
