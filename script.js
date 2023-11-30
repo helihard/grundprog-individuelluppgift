@@ -1,11 +1,24 @@
 const postForm = document.querySelector("#create-new-post");
+const newPostTitle = document.querySelector("#new-title");
 const newPostInput = document.querySelector("#new-post");
+const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 
 submitBtn.disabled = true;
+newPostTitle.style.display ="none";
+newPostTagsDiv.style.display = "none";
+submitBtn.style.display = "none";
 
-newPostInput.addEventListener('input', checkIfEmpty);
+newPostInput.addEventListener("focus", () => {
+  newPostInput.style.width = "400px";
+  newPostInput.style.height = "200px";
+  newPostTitle.style.display = "block";
+  newPostTagsDiv.style.display = "block";
+  submitBtn.style.display = "block";
+
+  newPostInput.addEventListener("input", checkIfEmpty);
+});
 
 function checkIfEmpty() {
   let fieldToCheck = this.value;
@@ -26,6 +39,11 @@ function getFormData(event) {
 
   renderNewPost(compileNewPost(postForm));
   postForm.reset();
+  newPostInput.style.width = "auto";
+  newPostInput.style.height = "auto";
+  newPostTitle.style.display = "none";
+  newPostTagsDiv.style.display = "none";
+  submitBtn.style.display = "none";
   submitBtn.disabled = true;
 }
 
@@ -74,7 +92,7 @@ function renderDefaultTitle(body) {
 //skriver ut data i form av nytt inlägg
 function renderNewPost(post) {
   let newArticle = document.createElement("article");
-  let newTitle = document.createElement("h2");
+  let newTitle = document.createElement("h3");
   let newPostBody = document.createElement("p");
   let newTags = document.createElement("p");
   newTitle.innerText = post.title;
@@ -99,7 +117,7 @@ function renderPosts(posts) {
     let article = document.createElement("article");
     document.body.append(article);
 
-    let postTitle = document.createElement("h2");
+    let postTitle = document.createElement("h3");
     postTitle.innerText = post.title;
     article.append(postTitle);
 
