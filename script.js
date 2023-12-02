@@ -13,7 +13,6 @@ submitBtn.style.display = "none";
 
 //visar hela formuläret vid focus i textarea
 newPostInput.addEventListener("focus", () => {
-  newPostInput.style.width = "400px";
   newPostInput.style.height = "200px";
   newPostTitle.style.display = "block";
   newPostTagsDiv.style.display = "block";
@@ -61,7 +60,6 @@ function getFormData(event) {
 
   //återställ formulär efter submit: töm, dölj delar av formulär, disabla submitknapp 
   postForm.reset();
-  newPostInput.style.width = "auto";
   newPostInput.style.height = "auto";
   newPostTitle.style.display = "none";
   newPostTagsDiv.style.display = "none";
@@ -75,9 +73,8 @@ function compileNewPost(form) {
 
   //valda taggar läggs i en array
   for (let tag of newPostTags) {
-    if (tag.checked === true && checkedTags.length < 3) {
+    if (tag.checked === true) { // && checkedTags.length < 3
       checkedTags.push(tag.value);
-      console.log(checkedTags);
     }
   }
 

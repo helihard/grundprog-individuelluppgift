@@ -15,14 +15,13 @@ function renderPosts(posts) {
 
     let postTitle = document.createElement("h3");
     postTitle.innerText = post.title;
-    article.append(postTitle);
 
     let postBody = document.createElement("p");
     postBody.innerText = post.body;
-    article.append(postBody);
 
     let postTags = document.createElement("p");
     postTags.innerText = post.tags.join(", ");
-    article.append(postTags);
+
+    article.append(postTitle, postBody, postTags);
   }
 }
