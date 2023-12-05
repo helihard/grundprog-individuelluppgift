@@ -6,6 +6,14 @@ const newPostTags = document.querySelectorAll(".new-tag");
 const submitBtn = document.querySelector("#submit-new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 
+class Post {
+  constructor (title, body, tags) {
+    this.title = title;
+    this.body = body;
+    this.tags = tags;
+  }
+}
+
 submitBtn.disabled = true;
 newPostTitle.style.display ="none";
 newPostTagsDiv.style.display = "none";
@@ -78,11 +86,7 @@ function compileNewPost(form) {
     }
   }
 
-  let newPost = {
-    "title": form.newtitle.value,
-    "body": form.newbody.value,
-    "tags": checkedTags
-  }
+  let newPost = new Post(form.newtitle.value, form.newbody.value, checkedTags);
 
   //tar bort whitespaces i början och slutet av inläggstexten och titeln
   newPost.body = newPost.body.trim();
