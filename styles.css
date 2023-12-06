@@ -7,3 +7,13 @@ textarea {
   resize: none;
   width: 400px;
 }
+
+.tag-div {
+  display: flex;
+  gap: 5px;
+}
+
+.tag-span {
+  background-color: lightgray;
+  padding: 5px;
+}
