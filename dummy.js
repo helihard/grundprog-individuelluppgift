@@ -12,23 +12,23 @@
 function printDummyData(posts) {
   posts.forEach((post) => {
   
-    const article = document.createElement("article");
-    const title = document.createElement("h3");
-    const body = document.createElement("p");
-    const tags = document.createElement("p");
-    tags.classList.add("tag-div");
+    const dummyArticle = document.createElement("article");
+    const dummyTitle = document.createElement("h3");
+    const dummyBody = document.createElement("p");
+    const dummyTags = document.createElement("p");
+    dummyTags.classList.add("tag-div");
 
     post.tags.forEach((tag) => {
-      const tagSpan = document.createElement("span");
-      tagSpan.classList.add("tag-span");
-      tagSpan.textContent = tag;
-      tags.append(tagSpan);
+      const dummyTagSpan = document.createElement("span");
+      dummyTagSpan.classList.add("tag-span");
+      dummyTagSpan.textContent = tag;
+      dummyTags.append(dummyTagSpan);
     });
 
-    title.textContent = post.title;
-    body.textContent = post.body;
+    dummyTitle.textContent = post.title;
+    dummyBody.textContent = post.body;
 
-    article.append(title, body, tags);
-    dummyPostsDiv.append(article);
+    dummyArticle.append(dummyTitle, dummyBody, dummyTags);
+    dummyPostsDiv.append(dummyArticle);
   });
 }
