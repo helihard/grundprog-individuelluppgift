@@ -1,3 +1,5 @@
+const dummyPostsDiv = document.querySelector("#dummy-posts-div");
+
 //hämtar inlägg från DummyJSON
 //sparar inlägg i localStorage - får se om det går att göra något med detta
 (async () => {
