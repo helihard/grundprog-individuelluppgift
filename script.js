@@ -63,11 +63,59 @@ function getFormData(event) {
     }
   }
 
-  let newPost = new Post(title, body, checkedTags);
-  newPostsArray.push(newPost);
-  localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
   //skriv ut nytt inlägg
-  printNewPost(newPost);
+  printNewPost(compileNewPost(title, body, checkedTags));
   postForm.reset();
   formInactive();
+}
+
+//sammanställer hämtad data från formuläret till ett inlägg
+function compileNewPost(title, body, tags) {
+
+  let newPost = new Post(title, body, tags);
+
+  //tar bort whitespaces i början och slutet av titeln och inläggstexten
+  newPost.title = newPost.title.trim();
+  newPost.body = newPost.body.trim();
+
+  //autogenerera titel från inläggstexten om användaren inte anger titel
+  if (newPost.title === "") {
+    newPost.title = renderDefaultTitle(newPost.body);
+  } else {
+    newPost.title;
+  }
+  newPostsArray.push(newPost);
+  localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
+  return newPost;
+}
+
+//autogenererar titel
+function renderDefaultTitle(body) {
+  //delar upp inlägget i rader
+  //alla tomma rader blir en tom sträng i arrayen även om de innehåller mellanslag
+  const splitByNewLine = body.split(/\r?\n/).map(line => line.trim());
+  //console.log(splitByNewLine);
+  //första raden i inlägget
+  const firstLine = splitByNewLine[0];
+ 
+  //delar upp första raden i ord
+  const splitByWhiteSpace = firstLine.split(" ");
+  //console.log(splitByWhiteSpace);
+  const defaultTitleArray = [];
+
+  //lägger bestämt maxantal ord i arrayen som ska bli inläggets genererade titel
+  for (let i = 0; i < splitByWhiteSpace.length; i++) {
+    let word = splitByWhiteSpace[i];
+
+    //max sex ord i titeln
+    if (i < 6) {
+      defaultTitleArray.push(word);
+    }
+  }
+
+  //skapar en string av arrayen: detta är titeln
+  let defaultTitle = defaultTitleArray.join(" ");
+
+  //returnerar titeln
+  return defaultTitle;
 }
