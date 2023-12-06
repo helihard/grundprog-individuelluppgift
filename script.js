@@ -23,17 +23,19 @@ function printNewPost(post) {
 
   post.body = post.body.replace(/\\n/g, "<br />");
 
-  post.tags.forEach((tag) => {
-    const newTagSpan = document.createElement("span");
-    newTagSpan.classList.add("tag-span");
-    newTagSpan.textContent = tag;
-    newTags.append(newTagSpan);
-  });
-
   newTitle.textContent = post.title;
   newBody.innerText = post.body;
   
-  newArticle.append(newTitle, newBody, newTags);
+  newArticle.append(newTitle, newBody);
+  if (post.tags !== "") {
+    post.tags.forEach((tag) => {
+      const newTagSpan = document.createElement("span");
+      newTagSpan.classList.add("tag-span");
+      newTagSpan.textContent = tag;
+      newTags.append(newTagSpan);
+      newArticle.append(newTags);
+    });
+  }
   newPostsDiv.append(newArticle);
 }
 
