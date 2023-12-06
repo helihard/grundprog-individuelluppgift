@@ -19,6 +19,7 @@ function printDummyData(posts) {
     const dummyBody = document.createElement("p");
     const dummyTags = document.createElement("p");
     dummyTags.classList.add("tag-div");
+    const dummyLikes = document.createElement("button");
 
     post.tags.forEach((tag) => {
       const dummyTagSpan = document.createElement("span");
@@ -29,8 +30,15 @@ function printDummyData(posts) {
 
     dummyTitle.textContent = post.title;
     dummyBody.textContent = post.body;
+    dummyLikes.textContent = post.reactions;
 
-    dummyArticle.append(dummyTitle, dummyBody, dummyTags);
+    dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyLikes);
     dummyPostsDiv.append(dummyArticle);
+
+    dummyLikes.addEventListener("click", () => {
+      post.reactions++;
+      dummyLikes.textContent = post.reactions;
+      dummyLikes.disabled = true;
+    })
   });
 }
