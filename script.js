@@ -21,6 +21,8 @@ function printNewPost(post) {
   const newTags = document.createElement("p");
   newTags.classList.add("tag-div");
 
+  post.body = post.body.replace(/\\n/g, "<br />");
+
   post.tags.forEach((tag) => {
     const newTagSpan = document.createElement("span");
     newTagSpan.classList.add("tag-span");
@@ -29,7 +31,7 @@ function printNewPost(post) {
   });
 
   newTitle.textContent = post.title;
-  newBody.textContent = post.body;
+  newBody.innerText = post.body;
   
   newArticle.append(newTitle, newBody, newTags);
   newPostsDiv.append(newArticle);
