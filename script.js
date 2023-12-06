@@ -76,11 +76,11 @@ function compileNewPost(title, body, tags) {
 
   let newPost = new Post(title, body, tags);
 
-  //tar bort whitespaces i början och slutet av titeln och inläggstexten
+  //tar bort mellanslag och radbrytningar i början och slutet av titeln och inläggstexten
   newPost.title = newPost.title.trim();
   newPost.body = newPost.body.trim();
 
-  //autogenerera titel från inläggstexten om användaren inte anger titel
+  //autogenerera titel från inläggstexten om användaren inte angett titel
   if (newPost.title === "") {
     newPost.title = renderDefaultTitle(newPost.body);
   } else {
@@ -96,9 +96,17 @@ function renderDefaultTitle(body) {
   //delar upp inlägget i rader
   //alla tomma rader blir en tom sträng i arrayen även om de innehåller mellanslag
   const splitByNewLine = body.split(/\r?\n/).map(line => line.trim());
-  //console.log(splitByNewLine);
+  
   //första raden i inlägget
   const firstLine = splitByNewLine[0];
+
+  //tar bort resterande items i arrayen
+  for (let i = 1; i < splitByNewLine.length; i++) {
+    splitByNewLine.pop();
+    i--;
+  }
+
+  //console.log(splitByNewLine);
  
   //delar upp första raden i ord
   const splitByWhiteSpace = firstLine.split(" ");
