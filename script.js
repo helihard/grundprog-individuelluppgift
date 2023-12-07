@@ -21,13 +21,15 @@ function printNewPost(post) {
   const newTags = document.createElement("p");
   newTags.classList.add("tag-div");
   const newUpvotedBtn = document.createElement("button");
+  const newUpvotedCount = document.createElement("span");
 
   post.body = post.body.replace(/\\n/g, "<br />");
 
   newTitle.textContent = post.title;
   newBody.innerText = post.body;
 
-  newUpvotedBtn.textContent = post.reactions;
+  newUpvotedBtn.innerHTML = "<span class='fa-regular fa-thumbs-up fa-lg'>";
+  newUpvotedCount.textContent = post.reactions;
   
   newArticle.append(newTitle, newBody);
   if (post.tags !== "") {
@@ -39,13 +41,13 @@ function printNewPost(post) {
       newArticle.append(newTags);
     });
   }
-  newArticle.append(newUpvotedBtn);
+  newArticle.append(newUpvotedBtn, newUpvotedCount);
   newPostsDiv.append(newArticle);
 
   newUpvotedBtn.addEventListener("click", () => {
     post.reactions++;
-    //console.log(post.reactions);
-    newUpvotedBtn.textContent = post.reactions;
+    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
+    newUpvotedCount.textContent = post.reactions;
     post.upvoted = true;
     newUpvotedBtn.classList.add("active");
     newUpvotedBtn.disabled = true;
@@ -53,6 +55,7 @@ function printNewPost(post) {
   });
   if (post.upvoted) {
     newUpvotedBtn.disabled = true;
+    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
     newUpvotedBtn.classList.add("active")
   }
 }

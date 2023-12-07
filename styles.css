@@ -15,6 +15,18 @@ div, p, span {
   flex-direction: column-reverse;
 }
 
+#new-posts-div button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+#dummy-posts-div button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
 textarea {
   resize: none;
   width: 400px;
@@ -31,6 +43,5 @@ textarea {
 }
 
 .active {
-  background-color: green;
-  color: black;
+  color: green;
 }

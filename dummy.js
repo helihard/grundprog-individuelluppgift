@@ -43,6 +43,7 @@ function printDummyData(posts) {
     const dummyTags = document.createElement("p");
     dummyTags.classList.add("tag-div");
     const dummyUpvotedBtn = document.createElement("button");
+    const dummyUpvotedCount = document.createElement("span");
 
     post.tags.forEach((tag) => {
       const dummyTagSpan = document.createElement("span");
@@ -53,14 +54,16 @@ function printDummyData(posts) {
 
     dummyTitle.textContent = post.title;
     dummyBody.textContent = post.body;
-    dummyUpvotedBtn.textContent = post.reactions;
+    dummyUpvotedBtn.innerHTML = "<span class='fa-regular fa-thumbs-up fa-lg'>";
+    dummyUpvotedCount.textContent = post.reactions;
 
-    dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyUpvotedBtn);
+    dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyUpvotedBtn, dummyUpvotedCount);
     dummyPostsDiv.append(dummyArticle);
 
     dummyUpvotedBtn.addEventListener("click", () => {
       post.reactions++;
-      dummyUpvotedBtn.textContent = post.reactions;
+      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
+      dummyUpvotedCount.textContent = post.reactions;
       post.upvoted = true;
       dummyUpvotedBtn.classList.add("active");
       dummyUpvotedBtn.disabled = true;
@@ -68,6 +71,7 @@ function printDummyData(posts) {
     })
     if (post.upvoted) {
       dummyUpvotedBtn.disabled = true;
+      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
       dummyUpvotedBtn.classList.add("active");
     }
   });
