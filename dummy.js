@@ -42,7 +42,7 @@ function printDummyData(posts) {
     const dummyBody = document.createElement("p");
     const dummyTags = document.createElement("p");
     dummyTags.classList.add("tag-div");
-    const dummyLikeBtn = document.createElement("button");
+    const dummyUpvotedBtn = document.createElement("button");
 
     post.tags.forEach((tag) => {
       const dummyTagSpan = document.createElement("span");
@@ -53,22 +53,22 @@ function printDummyData(posts) {
 
     dummyTitle.textContent = post.title;
     dummyBody.textContent = post.body;
-    dummyLikeBtn.textContent = post.reactions;
+    dummyUpvotedBtn.textContent = post.reactions;
 
-    dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyLikeBtn);
+    dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyUpvotedBtn);
     dummyPostsDiv.append(dummyArticle);
 
-    dummyLikeBtn.addEventListener("click", () => {
+    dummyUpvotedBtn.addEventListener("click", () => {
       post.reactions++;
-      dummyLikeBtn.textContent = post.reactions;
-      post.liked = true;
-      dummyLikeBtn.classList.add("active");
-      dummyLikeBtn.disabled = true;
+      dummyUpvotedBtn.textContent = post.reactions;
+      post.upvoted = true;
+      dummyUpvotedBtn.classList.add("active");
+      dummyUpvotedBtn.disabled = true;
       localStorage.setItem("dummyPosts", JSON.stringify(storedDummyPosts));
     })
-    if (post.liked) {
-      dummyLikeBtn.disabled = true;
-      dummyLikeBtn.classList.add("active");
+    if (post.upvoted) {
+      dummyUpvotedBtn.disabled = true;
+      dummyUpvotedBtn.classList.add("active");
     }
   });
 }
