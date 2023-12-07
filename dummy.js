@@ -3,9 +3,9 @@ const dummyPostsDiv = document.querySelector("#dummy-posts-div");
 let storedDummyPosts = [];
 
 async function fetchDummyData() {
-  storedDummyPosts = localStorage.getItem("dummyPosts"); 
-  if (storedDummyPosts) {
-    storedDummyPosts = JSON.parse(localStorage.getItem("dummyPosts")) 
+  const localStoragePosts = localStorage.getItem("dummyPosts"); 
+  if (localStoragePosts) {
+    storedDummyPosts = JSON.parse(localStoragePosts); 
     printDummyData(storedDummyPosts);
     console.log(storedDummyPosts);
   } else {
