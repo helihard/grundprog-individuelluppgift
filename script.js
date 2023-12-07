@@ -20,11 +20,14 @@ function printNewPost(post) {
   const newBody = document.createElement("p");
   const newTags = document.createElement("p");
   newTags.classList.add("tag-div");
+  const newUpvotedBtn = document.createElement("button");
 
   post.body = post.body.replace(/\\n/g, "<br />");
 
   newTitle.textContent = post.title;
   newBody.innerText = post.body;
+
+  newUpvotedBtn.textContent = post.reactions;
   
   newArticle.append(newTitle, newBody);
   if (post.tags !== "") {
@@ -36,7 +39,22 @@ function printNewPost(post) {
       newArticle.append(newTags);
     });
   }
+  newArticle.append(newUpvotedBtn);
   newPostsDiv.append(newArticle);
+
+  newUpvotedBtn.addEventListener("click", () => {
+    post.reactions++;
+    //console.log(post.reactions);
+    newUpvotedBtn.textContent = post.reactions;
+    post.upvoted = true;
+    newUpvotedBtn.classList.add("active");
+    newUpvotedBtn.disabled = true;
+    localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
+  });
+  if (post.upvoted) {
+    newUpvotedBtn.disabled = true;
+    newUpvotedBtn.classList.add("active")
+  }
 }
 
 //när sidan laddas: 
@@ -75,6 +93,8 @@ function getFormData(event) {
 function compileNewPost(title, body, tags) {
 
   let newPost = new Post(title, body, tags);
+  newPost.reactions = 0;
+
 
   //tar bort mellanslag och radbrytningar i början och slutet av titeln och inläggstexten
   newPost.title = newPost.title.trim();
