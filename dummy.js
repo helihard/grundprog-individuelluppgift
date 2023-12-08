@@ -65,14 +65,16 @@ function printDummyData(posts) {
       dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
       dummyUpvotedCount.textContent = post.reactions;
       post.upvoted = true;
-      dummyUpvotedBtn.classList.add("active");
+      dummyUpvotedBtn.style.color = "green";
+      //dummyUpvotedBtn.classList.add("active");
       dummyUpvotedBtn.disabled = true;
       localStorage.setItem("dummyPosts", JSON.stringify(storedDummyPosts));
     })
     if (post.upvoted) {
       dummyUpvotedBtn.disabled = true;
       dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
-      dummyUpvotedBtn.classList.add("active");
+      dummyUpvotedBtn.style.color = "green";
+      //dummyUpvotedBtn.classList.add("active");
     }
   });
 }

@@ -49,14 +49,16 @@ function printNewPost(post) {
     newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
     newUpvotedCount.textContent = post.reactions;
     post.upvoted = true;
-    newUpvotedBtn.classList.add("active");
+    newUpvotedBtn.style.color = "green";
+    //newUpvotedBtn.classList.add("active");
     newUpvotedBtn.disabled = true;
     localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
   });
   if (post.upvoted) {
     newUpvotedBtn.disabled = true;
     newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
-    newUpvotedBtn.classList.add("active")
+    newUpvotedBtn.style.color = "green";
+    //newUpvotedBtn.classList.add("active")
   }
 }
 

@@ -19,12 +19,24 @@ div, p, span {
   border: 0;
   outline: 0;
   background-color: transparent;
+  color: grey;
+  transition: .1s ease-in;
+}
+
+#new-posts-div button:hover {
+  color: black;
 }
 
 #dummy-posts-div button {
   border: 0;
   outline: 0;
   background-color: transparent;
+  color: grey;
+  transition: .1s ease-in;
+}
+
+#dummy-posts-div button:hover {
+  color: black;
 }
 
 textarea {
