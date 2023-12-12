@@ -44,6 +44,8 @@ function printDummyData(posts) {
     dummyTags.classList.add("tag-div");
     const dummyUpvotedBtn = document.createElement("button");
     const dummyUpvotedCount = document.createElement("span");
+    //dummyArticle.style.borderBottom = "1px solid var(--darkgrey)";
+    //dummyArticle.style.paddingBottom = "8px";
 
     post.tags.forEach((tag) => {
       const dummyTagSpan = document.createElement("span");
@@ -54,7 +56,7 @@ function printDummyData(posts) {
 
     dummyTitle.textContent = post.title;
     dummyBody.textContent = post.body;
-    dummyUpvotedBtn.innerHTML = "<span class='fa-regular fa-thumbs-up fa-lg'>";
+    dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-temperature-arrow-up fa-lg'>";
     dummyUpvotedCount.textContent = post.reactions;
 
     dummyArticle.append(dummyTitle, dummyBody, dummyTags, dummyUpvotedBtn, dummyUpvotedCount);
@@ -62,19 +64,21 @@ function printDummyData(posts) {
 
     dummyUpvotedBtn.addEventListener("click", () => {
       post.reactions++;
-      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
+      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
       dummyUpvotedCount.textContent = post.reactions;
       post.upvoted = true;
-      dummyUpvotedBtn.style.color = "green";
-      //dummyUpvotedBtn.classList.add("active");
+      dummyUpvotedBtn.style.color = "var(--fire)";
+      dummyUpvotedBtn.style.cursor = "default";
+      dummyUpvotedBtn.classList.add("active");
       dummyUpvotedBtn.disabled = true;
       localStorage.setItem("dummyPosts", JSON.stringify(storedDummyPosts));
     })
     if (post.upvoted) {
       dummyUpvotedBtn.disabled = true;
-      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
-      dummyUpvotedBtn.style.color = "green";
-      //dummyUpvotedBtn.classList.add("active");
+      dummyUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
+      dummyUpvotedBtn.style.color = "var(--fire)";
+      dummyUpvotedBtn.style.cursor = "default";
+      dummyUpvotedBtn.classList.add("active");
     }
   });
 }

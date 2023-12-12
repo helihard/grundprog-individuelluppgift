@@ -13,6 +13,8 @@ export function formInactive() {
   newPostTagsDiv.style.display = "none";
   submitBtn.style.display = "none";
   submitBtn.disabled = true;
+  submitBtn.style.backgroundColor = "var(--lightgrey)";
+  submitBtn.style.cursor = "default";
 }
 
 formInactive();
@@ -37,9 +39,13 @@ function checkIfEmpty() {
   //om textarea inte är tom och om det inmatade inte enbart är whitespaces: visa submitknappen
   //(endast text i textarea är obligatoriskt för att kunna posta)
   if (fieldToCheck !== "" && trimmedNewBodyValue.length !== 0) {
-    submitBtn.disabled = false;     
+    submitBtn.disabled = false;    
+    submitBtn.style.backgroundColor = "var(--fire)"; 
+    submitBtn.style.cursor = "pointer";
   } else if (trimmedNewBodyValue.length === 0){
     submitBtn.disabled = true;
+    submitBtn.style.backgroundColor = "var(--lightgrey)";
+    submitBtn.style.cursor = "default";
   }
 }
 

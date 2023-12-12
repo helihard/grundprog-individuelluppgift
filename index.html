@@ -1,37 +1,101 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Dedit – Die into everything</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Mini-reddit</h1>
-    <form id="create-new-post" action="" method="post">
-      <h2>Add new post</h2>
-      <input type="text" id="new-title" name="newtitle" placeholder="Title">
-      <textarea id="new-post" name="newbody" placeholder="What's on your mind?"></textarea>
-      <div id="new-tags-div">
-        <input type="checkbox" class="new-tag" id="american" name="newTags[]" value="american"><label for="american">american</label>
-        <input type="checkbox" class="new-tag" id="classic" name="newTags[]" value="classic"><label for="classic">classic</label>
-        <input type="checkbox" class="new-tag" id="crime" name="newTags[]" value="crime"><label for="crime">crime</label>
-        <input type="checkbox" class="new-tag" id="english" name="newTags[]" value="english"><label for="english">english</label>
-        <input type="checkbox" class="new-tag" id="fiction" name="newTags[]" value="fiction"><label for="fiction">fiction</label>
-        <input type="checkbox" class="new-tag" id="french" name="newTags[]" value="french"><label for="french">french</label>
-        <input type="checkbox" class="new-tag" id="history" name="newTags[]" value="history"><label for="history">history</label>
-        <input type="checkbox" class="new-tag" id="love" name="newTags[]" value="love"><label for="love">love</label>
-        <input type="checkbox" class="new-tag" id="magical" name="newTags[]" value="magical"><label for="magical">magical</label>
-        <input type="checkbox" class="new-tag" id="mystery" name="newTags[]" value="mystery"><label for="mystery">mystery</label>
-      </div>
-      <button type="submit" id="submit-new-post">Submit</button>
-    </form>
-    
-    <div id="new-posts-div"></div>
-    <div id="dummy-posts-div"></div>
+    <div id="container">
+      <nav id="sidebar">
+        <img src="deditlogo.jpg" width="200px" height="auto">
+          <p>Topics</p>
+          <table>
+            <tr>
+              <td><i class="fa-solid fa-road-barrier fa-lg"></i></td>
+              <td>d/american</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-landmark fa-lg"></i></td>
+              <td>d/classic</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-gun fa-lg"></i></td>
+              <td>d/crime</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-mug-saucer fa-lg"></i></td>
+              <td>d/english</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-book-skull fa-lg"></i></td>
+              <td>d/fiction</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-wine-glass fa-lg"></i></td>
+              <td>d/french</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-hourglass-end fa-lg"></i></td>
+              <td>d/history</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-heart-crack fa-lg"></i></td>
+              <td>d/love</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-hand-sparkles fa-lg"></i></td>
+              <td>d/magical</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-mask fa-lg"></i></td>
+              <td>d/mystery</td>
+              <td><i class="fa-solid fa-chevron-down"></i></td>
+            </tr>
+          </table>        
+      </nav>
+      <main>
+        <div></div>
+        <div>
+          <form id="create-new-post" action="" method="post">
+            <h1>Add new post</h1>
+            <input type="text" id="new-title" name="newtitle" placeholder="Title">
+            <textarea id="new-post" name="newbody" placeholder="What's on your mind?"></textarea>
+            <div id="new-tags-div">
+              <h4>Choose up to three tags:</h4>
+              <input type="checkbox" class="new-tag" id="american" name="newTags[]" value="american"><label for="american">american</label>
+              <input type="checkbox" class="new-tag" id="classic" name="newTags[]" value="classic"><label for="classic">classic</label>
+              <input type="checkbox" class="new-tag" id="crime" name="newTags[]" value="crime"><label for="crime">crime</label>
+              <input type="checkbox" class="new-tag" id="english" name="newTags[]" value="english"><label for="english">english</label>
+              <input type="checkbox" class="new-tag" id="fiction" name="newTags[]" value="fiction"><label for="fiction">fiction</label>
+              <input type="checkbox" class="new-tag" id="french" name="newTags[]" value="french"><label for="french">french</label>
+              <input type="checkbox" class="new-tag" id="history" name="newTags[]" value="history"><label for="history">history</label>
+              <input type="checkbox" class="new-tag" id="love" name="newTags[]" value="love"><label for="love">love</label>
+              <input type="checkbox" class="new-tag" id="magical" name="newTags[]" value="magical"><label for="magical">magical</label>
+              <input type="checkbox" class="new-tag" id="mystery" name="newTags[]" value="mystery"><label for="mystery">mystery</label>
+            </div>
+            <button type="submit" id="submit-new-post">Submit</button>
+          </form>
+          
+          <div id="new-posts-div"></div>
+          <div id="dummy-posts-div"></div>
+        </div>
+      </main>
+    </div>
     <script type="module" src="script.js"></script>
     <script type="module" src="dummy.js"></script>
   </body>

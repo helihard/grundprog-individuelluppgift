@@ -1,8 +1,109 @@
+/* https://www.redditinc.com/assets/press-resources/reddit_brand_guidelines_202009-3.pdf */
 
-h2, h3 {
+:root {
+  --bgcolor: rgb(27, 36, 38); /* Reddit Orca */
+  --white: whitesmoke;
+  --darkgrey: rgb(122, 146, 153); /* Reddit Narwhal */
+  --mediumgrey: rgb(184, 199, 204); /* Reddit Seal */
+  --lightgrey: rgb(215, 223, 226); /* Reddit Dolphin */
+  --seagreen: rgb(0, 137, 133); /* Reddit Ocean */
+  --mint: rgb(20, 216, 195); /* Reffit Mint */
+  --green: rgb(70, 209, 96); /* Reddit Moderator */
+  --fire: rgb(255, 135, 23); /* Reddit Lit */
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bgcolor);
+  color: var(--white);
+}
+
+#container {
+  display: flex;
+  gap: 20px;
+  width: 80vw;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+nav {
+  height: 100%;
+  min-width: max-content;
+  z-index: 1000;
+  display: grid;
+  grid-template-rows: 80px auto;
+  position: sticky;
+  top: 10px;
+  left: 0;
+  overflow: hidden;
+}
+
+nav p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--mediumgrey);
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+table tr td{
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+}
+
+td {
+  padding: 10px 0;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 80px auto;;
+}
+
+h1, h2, h3, h4 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   letter-spacing: -.5px;
+  margin: 0;
+}
+
+textarea, input[type="text"] {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border: 1px double transparent;;
+  outline: 1px solid transparent;
+  padding: 10px 15px;  
+}
+
+textarea::placeholder {
+  color: var(--darkgrey);
+}
+
+input[type="text"]::placeholder {
+  color: var(--darkgrey);
+}
+
+input[type="text"] {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  border-radius: 10px;
+}
+
+input [type="text"]:focus {
+  border: 1px double var(--mint);
+  outline: 1px solid transparent;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+textarea:focus {
+  border: 1px double var(--mint);
+  outline: 1px solid transparent;
+  box-shadow: 0 0 10px #719ECE;
 }
 
 div, p, span {
@@ -10,38 +111,92 @@ div, p, span {
   font-size: 14px;
 }
 
+input[type="checkbox"] {
+  accent-color: var(--mint);
+  border: none;
+  outline: none;
+  color: transparent;
+}
+
+input[type="checkbox"]:active {
+  border: none;
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+  box-shadow: 0 0 10px #719ECE;
+}
+
+#submit-new-post {
+  background-color: var(--lightgrey);
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border: 1px double transparent;;
+  outline: 1px solid transparent;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
 #new-posts-div {
   display: flex;
   flex-direction: column-reverse;
+}
+
+article {
+  border-bottom: 1px solid var(--darkgrey);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+article:last-of-type {
+  border-bottom: none;
+}
+
+#new-posts-div article {
+  border-bottom: 1px solid var(--darkgrey);
 }
 
 #new-posts-div button {
   border: 0;
   outline: 0;
   background-color: transparent;
-  color: grey;
+  color: var(--mediumgrey);
   transition: .1s ease-in;
+  width: 30px;
+  text-align: left;
 }
 
 #new-posts-div button:hover {
-  color: black;
+  color: var(--white);
+  cursor: pointer;
 }
 
 #dummy-posts-div button {
   border: 0;
   outline: 0;
   background-color: transparent;
-  color: grey;
+  color: var(--mediumgrey);
   transition: .1s ease-in;
+  width: 30px;
+  text-align: left;
 }
 
 #dummy-posts-div button:hover {
-  color: black;
+  color: var(--white);
+  cursor: pointer;
 }
 
 textarea {
   resize: none;
   width: 400px;
+}
+
+#new-tags-div label {
+  font-size: 12px;
+  position: relative;
+  bottom: 3px;
+  left: 3px;
+  margin-right: 7px;
 }
 
 .tag-div {
@@ -50,10 +205,14 @@ textarea {
 }
 
 .tag-span {
-  background-color: lightgray;
-  padding: 5px;
+  background-color: var(--mint);
+  color: black;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .active {
-  color: green;
+  color: var(--green);
+  cursor: none;
 }

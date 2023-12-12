@@ -22,13 +22,15 @@ function printNewPost(post) {
   newTags.classList.add("tag-div");
   const newUpvotedBtn = document.createElement("button");
   const newUpvotedCount = document.createElement("span");
+  //newArticle.style.borderBottom = "1px solid var(--darkgrey)";
+  //newArticle.style.paddingBottom = "8px";
 
   post.body = post.body.replace(/\\n/g, "<br />");
 
   newTitle.textContent = post.title;
   newBody.innerText = post.body;
 
-  newUpvotedBtn.innerHTML = "<span class='fa-regular fa-thumbs-up fa-lg'>";
+  newUpvotedBtn.innerHTML = "<span class='fa-solid fa-temperature-arrow-up fa-lg'>";
   newUpvotedCount.textContent = post.reactions;
   
   newArticle.append(newTitle, newBody);
@@ -46,19 +48,21 @@ function printNewPost(post) {
 
   newUpvotedBtn.addEventListener("click", () => {
     post.reactions++;
-    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
+    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
     newUpvotedCount.textContent = post.reactions;
     post.upvoted = true;
-    newUpvotedBtn.style.color = "green";
-    //newUpvotedBtn.classList.add("active");
+    newUpvotedBtn.style.color = "var(--fire)";
+    newUpvotedBtn.style.cursor = "default";
+    newUpvotedBtn.classList.add("active");
     newUpvotedBtn.disabled = true;
     localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
   });
   if (post.upvoted) {
     newUpvotedBtn.disabled = true;
-    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-thumbs-up fa-lg'>";
-    newUpvotedBtn.style.color = "green";
-    //newUpvotedBtn.classList.add("active")
+    newUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
+    newUpvotedBtn.style.color = "var(--fire)";
+    newUpvotedBtn.style.cursor = "default";
+    newUpvotedBtn.classList.add("active")
   }
 }
 
