@@ -51,9 +51,9 @@ function checkIfEmpty() {
 
 //begränsar antal taggar för nytt inlägg
 (function() {
-  newPostTags.forEach((el) => {
-    el.addEventListener("change", function() {
-      if (el.closest("#new-tags-div").querySelectorAll("input:checked").length > 3) {
+  newPostTags.forEach((checkbox) => {
+    checkbox.addEventListener("change", function() {
+      if (checkbox.closest("#new-tags-div").querySelectorAll("input:checked").length > 3) {
         this.checked = false;
       }
     });
