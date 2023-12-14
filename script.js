@@ -4,8 +4,8 @@
 const postForm = document.querySelector("#create-new-post");
 const newPostTitle = document.querySelector("#new-title");
 const newPostBody = document.querySelector("#new-post");
-//const newPostTags = document.querySelectorAll(".new-tag");
-//const newPostTagsDiv = document.querySelector("#new-tags-div");
+const newPostTags = document.querySelectorAll(".new-tag");
+const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
 
 const newPostsDiv = document.querySelector("#new-posts-div");
@@ -49,8 +49,8 @@ function printPost(post, element) {
   const newArticle = document.createElement("article");
   const newTitle = document.createElement("h3");
   const newBody = document.createElement("p");
-  //const newTags = document.createElement("p");
-  //newTags.classList.add("tag-div");
+  const newTags = document.createElement("p");
+  newTags.classList.add("tag-div");
   const newUpvotedBtn = document.createElement("button");
   const newUpvotedCount = document.createElement("span");
   //newArticle.style.borderBottom = "1px solid var(--darkgrey)";
@@ -65,7 +65,7 @@ function printPost(post, element) {
   newUpvotedCount.textContent = post.reactions;
   
   newArticle.append(newTitle, newBody);
-  /*if (post.tags !== "") {
+  if (post.tags !== "") {
     post.tags.forEach((tag) => {
       const newTagSpan = document.createElement("span");
       newTagSpan.classList.add("tag-span");
@@ -73,7 +73,7 @@ function printPost(post, element) {
       newTags.append(newTagSpan);
       newArticle.append(newTags);
     });
-  }*/
+  }
   newArticle.append(newUpvotedBtn, newUpvotedCount);
   element.append(newArticle);
 
