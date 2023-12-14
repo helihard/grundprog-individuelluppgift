@@ -133,10 +133,13 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  let post = new Post;
+  /*let post = new Post;
   post.title = newPostTitle.value;
   post.body = newPostBody.value;
-  post.reactions = 0;
+  post.reactions = 0;*/
+
+  let title = newPostTitle.value;
+  let body = newPostBody.value;
   
   //let checkedTags = [];
 
@@ -147,40 +150,36 @@ function getFormData(event) {
     }
   }*/
 
-  post.tags = tagValues;
-
-  posts.unshift(post);
-  localStorage.setItem("posts", JSON.stringify(posts));
-  printPost(post, newPostsDiv);
+  let tags = tagValues;
 
   //skriv ut nytt inlägg
-  //printNewPost(compileNewPost(title, body, checkedTags));
+  printPost(compileNewPost(title, body, tags), newPostsDiv);
   tagValues = [];
   console.log(tagValues);
   postForm.reset();
   formInactive();
 }
-/*
+
 //sammanställer hämtad data från formuläret till ett inlägg
 function compileNewPost(title, body, tags) {
 
-  let newPost = new Post(title, body, tags);
-  newPost.reactions = 0;
-
+  let post = new Post(title, body, tags);
+  post.reactions = 0;
 
   //tar bort mellanslag och radbrytningar i början och slutet av titeln och inläggstexten
-  newPost.title = newPost.title.trim();
-  newPost.body = newPost.body.trim();
+  post.title = post.title.trim();
+  post.body = post.body.trim();
 
   //autogenerera titel från inläggstexten om användaren inte angett titel
-  if (newPost.title === "") {
-    newPost.title = renderDefaultTitle(newPost.body);
+  if (post.title === "") {
+    post.title = renderDefaultTitle(post.body);
   } else {
-    newPost.title;
+    post.title;
   }
-  newPostsArray.push(newPost);
-  localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
-  return newPost;
+  
+  posts.unshift(post);
+  localStorage.setItem("posts", JSON.stringify(posts));
+  return post;
 }
 
 //autogenererar titel
@@ -220,4 +219,4 @@ function renderDefaultTitle(body) {
 
   //returnerar titeln
   return defaultTitle;
-}*/
+}
