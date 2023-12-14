@@ -2,7 +2,7 @@
 
 //skapar åtkomst till element i html-filen
 const postForm = document.querySelector("#create-new-post");
-//const newPostTitle = document.querySelector("#new-title");
+const newPostTitle = document.querySelector("#new-title");
 const newPostBody = document.querySelector("#new-post");
 //const newPostTags = document.querySelectorAll(".new-tag");
 //const newPostTagsDiv = document.querySelector("#new-tags-div");
@@ -47,24 +47,24 @@ for (let i = 0; i < posts.length; i++) {
 //funktion som skriver ut nytt inlägg
 function printPost(post, element) {
   const newArticle = document.createElement("article");
-  //const newTitle = document.createElement("h3");
+  const newTitle = document.createElement("h3");
   const newBody = document.createElement("p");
   //const newTags = document.createElement("p");
   //newTags.classList.add("tag-div");
-  //const newUpvotedBtn = document.createElement("button");
-  //const newUpvotedCount = document.createElement("span");
+  const newUpvotedBtn = document.createElement("button");
+  const newUpvotedCount = document.createElement("span");
   //newArticle.style.borderBottom = "1px solid var(--darkgrey)";
   //newArticle.style.paddingBottom = "8px";
 
   //post.body = post.body.replace(/\\n/g, "<br />");
 
-  //newTitle.textContent = post.title;
+  newTitle.textContent = post.title;
   newBody.innerText = post.body;
 
-  //newUpvotedBtn.innerHTML = "<span class='fa-solid fa-temperature-arrow-up fa-lg'>";
-  //newUpvotedCount.textContent = post.reactions;
+  newUpvotedBtn.innerHTML = "<span class='fa-solid fa-temperature-arrow-up fa-lg'>";
+  newUpvotedCount.textContent = post.reactions;
   
-  newArticle.append(newBody);
+  newArticle.append(newTitle, newBody);
   /*if (post.tags !== "") {
     post.tags.forEach((tag) => {
       const newTagSpan = document.createElement("span");
@@ -73,11 +73,11 @@ function printPost(post, element) {
       newTags.append(newTagSpan);
       newArticle.append(newTags);
     });
-  }
-  newArticle.append(newUpvotedBtn, newUpvotedCount);*/
+  }*/
+  newArticle.append(newUpvotedBtn, newUpvotedCount);
   element.append(newArticle);
 
-  /*newUpvotedBtn.addEventListener("click", () => {
+  newUpvotedBtn.addEventListener("click", () => {
     post.reactions++;
     newUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
     newUpvotedCount.textContent = post.reactions;
@@ -86,7 +86,7 @@ function printPost(post, element) {
     newUpvotedBtn.style.cursor = "default";
     newUpvotedBtn.classList.add("active");
     newUpvotedBtn.disabled = true;
-    localStorage.setItem("newPosts", JSON.stringify(newPostsArray));
+    localStorage.setItem("posts", JSON.stringify(posts));
   });
   if (post.upvoted) {
     newUpvotedBtn.disabled = true;
@@ -94,7 +94,7 @@ function printPost(post, element) {
     newUpvotedBtn.style.color = "var(--fire)";
     newUpvotedBtn.style.cursor = "default";
     newUpvotedBtn.classList.add("active")
-  }*/
+  }
 }
 /*
 //när sidan laddas: 
@@ -113,7 +113,7 @@ function getFormData(event) {
   event.preventDefault();
 
   let post = new Post;
-  //let title = newPostTitle.value;
+  post.title = newPostTitle.value;
   post.body = newPostBody.value;
   //let checkedTags = [];
 
