@@ -115,6 +115,7 @@ function getFormData(event) {
   let post = new Post;
   post.title = newPostTitle.value;
   post.body = newPostBody.value;
+  post.reactions = 0;
   //let checkedTags = [];
 
   //valda taggar läggs i en array
