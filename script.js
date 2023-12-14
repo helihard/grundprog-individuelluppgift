@@ -116,14 +116,17 @@ function getFormData(event) {
   post.title = newPostTitle.value;
   post.body = newPostBody.value;
   post.reactions = 0;
-  //let checkedTags = [];
+  
+  let checkedTags = [];
 
   //valda taggar läggs i en array
-  /*for (let tag of newPostTags) {
+  for (let tag of newPostTags) {
     if (tag.checked === true) { // && checkedTags.length < 3
       checkedTags.push(tag.value);
     }
-  }*/
+  }
+
+  post.tags = checkedTags;
 
   posts.unshift(post);
   localStorage.setItem("posts", JSON.stringify(posts));
