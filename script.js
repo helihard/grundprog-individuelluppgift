@@ -11,6 +11,27 @@ const submitBtn = document.querySelector("#submit-new-post");
 const newPostsDiv = document.querySelector("#new-posts-div");
 const dummyPostsDiv = document.querySelector("#dummy-posts-div");
 
+let tagValues = [];
+
+newPostTags.forEach((checkbox) => {
+  checkbox.addEventListener("change", function() {
+    if (this.checked && tagValues.length < 3) {
+      tagValues.push(this.value);
+      console.log(tagValues);
+    } else if (this.checked && tagValues.length >= 3) {
+      this.checked = false;
+    } else {
+      for (let i = 0; i < tagValues.length; i++) {
+        if (tagValues[i] === this.value) {
+          const index = tagValues.indexOf(this.value);
+          tagValues.splice(index, 1);
+          console.log(tagValues);
+        }
+      }
+    }
+  });
+});
+
 //skapar en klass för nya inlägg
 class Post {
   constructor(title, body, tags) {
@@ -117,16 +138,16 @@ function getFormData(event) {
   post.body = newPostBody.value;
   post.reactions = 0;
   
-  let checkedTags = [];
+  //let checkedTags = [];
 
   //valda taggar läggs i en array
-  for (let tag of newPostTags) {
+  /*for (let tag of newPostTags) {
     if (tag.checked === true) { // && checkedTags.length < 3
       checkedTags.push(tag.value);
     }
-  }
+  }*/
 
-  post.tags = checkedTags;
+  post.tags = tagValues;
 
   posts.unshift(post);
   localStorage.setItem("posts", JSON.stringify(posts));
@@ -134,6 +155,8 @@ function getFormData(event) {
 
   //skriv ut nytt inlägg
   //printNewPost(compileNewPost(title, body, checkedTags));
+  tagValues = [];
+  console.log(tagValues);
   postForm.reset();
   //formInactive();
 }
