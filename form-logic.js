@@ -49,6 +49,7 @@ function checkIfEmpty() {
   }
 }
 
+/*
 //begränsar antal taggar för nytt inlägg
 (function() {
   newPostTags.forEach((checkbox) => {
@@ -58,4 +59,4 @@ function checkIfEmpty() {
       }
     });
   });
-})();
+})();*/

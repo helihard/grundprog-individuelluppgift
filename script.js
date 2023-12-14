@@ -1,10 +1,10 @@
-//import { newPostTitle, newPostBody, newPostTags, formInactive } from "./form-logic.js";
+import { newPostTitle, newPostBody, newPostTags, formInactive } from "./form-logic.js";
 
 //skapar åtkomst till element i html-filen
 const postForm = document.querySelector("#create-new-post");
-const newPostTitle = document.querySelector("#new-title");
-const newPostBody = document.querySelector("#new-post");
-const newPostTags = document.querySelectorAll(".new-tag");
+//const newPostTitle = document.querySelector("#new-title");
+//const newPostBody = document.querySelector("#new-post");
+//const newPostTags = document.querySelectorAll(".new-tag");
 const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
 
@@ -158,7 +158,7 @@ function getFormData(event) {
   tagValues = [];
   console.log(tagValues);
   postForm.reset();
-  //formInactive();
+  formInactive();
 }
 /*
 //sammanställer hämtad data från formuläret till ett inlägg
