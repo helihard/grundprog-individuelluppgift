@@ -2,7 +2,9 @@
 
 //skapar åtkomst till element i html-filen, de som behövs i script-filen exporteras
 export const newPostTitle = document.querySelector("#new-title");
+const titleCharCount = document.querySelector("#title-char-count");
 export const newPostBody = document.querySelector("#new-post");
+const bodyCharCount = document.querySelector("#body-char-count");
 export const newPostTags = document.querySelectorAll(".new-tag");
 const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
@@ -10,7 +12,11 @@ const submitBtn = document.querySelector("#submit-new-post");
 export function formInactive() {
   newPostBody.style.height = "auto";
   newPostTitle.style.display = "none";
+  titleCharCount.style.display = "none";
+  titleCharCount.textContent = "70/70 chars remain";
   newPostTagsDiv.style.display = "none";
+  bodyCharCount.style.display = "none";
+  bodyCharCount.textContent = "2000/2000 chars remain";
   submitBtn.style.display = "none";
   submitBtn.disabled = true;
   submitBtn.style.backgroundColor = "var(--lightgrey)";
@@ -22,8 +28,10 @@ formInactive();
 //visar hela formuläret vid fokus i textarea
 newPostBody.addEventListener("focus", () => {
   newPostBody.style.height = "200px";
-  newPostTitle.style.display = "block";
+  newPostTitle.style.display = "inline-block";
+  titleCharCount.style.display = "inline-block";
   newPostTagsDiv.style.display = "block";
+  bodyCharCount.style.display = "inline-block";
   submitBtn.style.display = "block";
 
   //kollar om det finns text i textarea
@@ -60,3 +68,15 @@ function checkIfEmpty() {
     });
   });
 })();*/
+
+newPostTitle.addEventListener("keyup", function() {
+  let str = newPostTitle.value;
+  let max = 70;
+  titleCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+});
+
+newPostBody.addEventListener("keyup", function() {
+  let str = newPostBody.value;
+  let max = 2000;
+  bodyCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+});

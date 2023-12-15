@@ -73,8 +73,10 @@
         <div>
           <form id="create-new-post" action="" method="post">
             <h1>Add new post</h1>
-            <input type="text" id="new-title" name="newtitle" placeholder="Title" style="display:none;"><br>
-            <textarea id="new-post" name="newbody" placeholder="What's on your mind?"></textarea>
+            <input type="text" id="new-title" name="newtitle" placeholder="Title" maxlength="70" style="display:none;">
+            <span id="title-char-count" style="display:none;"></span><br>
+            <textarea id="new-post" name="newbody" placeholder="What's on your mind?" maxlength="2000"></textarea>
+            <span id="body-char-count" style="display:none;"></span>
             <div id="new-tags-div" style="display:none;">
               <h4>Choose up to three tags:</h4>
               <input type="checkbox" class="new-tag" id="american" name="newTags[]" value="american"><label for="american">american</label>
