@@ -216,7 +216,19 @@ function renderDefaultTitle(body) {
 
   //skapar en string av arrayen: detta är titeln
   let defaultTitle = defaultTitleArray.join(" ");
-
+  let arrayOfChar = Array.from(defaultTitle);
+  if (arrayOfChar.length > 70) {
+    defaultTitle = shortenTitle(arrayOfChar);
+    console.log(defaultTitle);
+  }
   //returnerar titeln
   return defaultTitle;
+}
+
+function shortenTitle(arr) {
+  while (arr.length > 70) {
+    arr.pop();
+  }
+  let shortenedTitle = arr.join("");
+  return shortenedTitle;
 }
