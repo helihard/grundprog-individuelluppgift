@@ -72,11 +72,19 @@ function checkIfEmpty() {
 newPostTitle.addEventListener("keyup", function() {
   let str = newPostTitle.value;
   let max = 70;
+  if (str.length > 0) {
   titleCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+  } else {
+    titleCharCount.textContent = "70/70 chars remain";
+  }
 });
 
 newPostBody.addEventListener("keyup", function() {
   let str = newPostBody.value;
   let max = 2000;
+  if (str.length > 0) {
   bodyCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+  } else {
+    bodyCharCount.textContent = "2000/2000 chars remain";
+  }
 });
