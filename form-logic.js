@@ -9,7 +9,9 @@ export const newPostTags = document.querySelectorAll(".new-tag");
 const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
 
-export function formInactive() {
+export function clearForm(form) {
+  form.reset();
+  tagValues = [];
   newPostBody.style.height = "auto";
   newPostTitle.style.display = "none";
   titleCharCount.style.display = "none";
@@ -23,8 +25,6 @@ export function formInactive() {
   submitBtn.style.cursor = "default";
 }
 
-formInactive();
-
 //visar hela formuläret vid fokus i textarea
 newPostBody.addEventListener("focus", () => {
   newPostBody.style.height = "200px";
@@ -35,56 +35,60 @@ newPostBody.addEventListener("focus", () => {
   submitBtn.style.display = "block";
 
   //kollar om det finns text i textarea
-  newPostBody.addEventListener("input", checkIfEmpty);
+  newPostBody.addEventListener("input", function () {
+    let valueToCheck = this.value; //value kanske bättre namn än field? 
+
+    //tar bort whitespace i början och slutet av texten
+    let trimmedNewBodyValue = valueToCheck.trim();
+
+    //om textarea inte är tom och om det inmatade inte enbart är whitespaces: visa submitknappen
+    //(endast text i textarea är obligatoriskt för att kunna posta)
+    if (valueToCheck !== "" && trimmedNewBodyValue.length !== 0) {
+      submitBtn.disabled = false;
+      submitBtn.style.backgroundColor = "var(--fire)";
+      submitBtn.style.cursor = "pointer";
+    } else if (trimmedNewBodyValue.length === 0) {
+      submitBtn.disabled = true;
+      submitBtn.style.backgroundColor = "var(--lightgrey)";
+      submitBtn.style.cursor = "default";
+    }
+  });
 });
 
-function checkIfEmpty() {
-  let fieldToCheck = this.value;
-
-  //tar bort whitespace i början och slutet av texten
-  let trimmedNewBodyValue = fieldToCheck.trim();
-
-  //om textarea inte är tom och om det inmatade inte enbart är whitespaces: visa submitknappen
-  //(endast text i textarea är obligatoriskt för att kunna posta)
-  if (fieldToCheck !== "" && trimmedNewBodyValue.length !== 0) {
-    submitBtn.disabled = false;    
-    submitBtn.style.backgroundColor = "var(--fire)"; 
-    submitBtn.style.cursor = "pointer";
-  } else if (trimmedNewBodyValue.length === 0){
-    submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = "var(--lightgrey)";
-    submitBtn.style.cursor = "default";
-  }
-}
-
-/*
-//begränsar antal taggar för nytt inlägg
-(function() {
-  newPostTags.forEach((checkbox) => {
-    checkbox.addEventListener("change", function() {
-      if (checkbox.closest("#new-tags-div").querySelectorAll("input:checked").length > 3) {
-        this.checked = false;
-      }
-    });
-  });
-})();*/
-
-newPostTitle.addEventListener("keyup", function() {
+newPostTitle.addEventListener("keyup", function () {
   let str = newPostTitle.value;
   let max = 70;
   if (str.length > 0) {
-  titleCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+    titleCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
   } else {
     titleCharCount.textContent = "70/70 chars remain";
   }
 });
 
-newPostBody.addEventListener("keyup", function() {
+newPostBody.addEventListener("keyup", function () {
   let str = newPostBody.value;
   let max = 2000;
   if (str.length > 0) {
-  bodyCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
+    bodyCharCount.textContent = `${(max - str.length)}/${max} chars remain`;
   } else {
     bodyCharCount.textContent = "2000/2000 chars remain";
   }
+});
+
+export let tagValues = [];
+newPostTags.forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    if (this.checked && tagValues.length < 3) {
+      tagValues.push(this.value);
+    } else if (this.checked && tagValues.length >= 3) {
+      this.checked = false;
+    } else {
+      for (let i = 0; i < tagValues.length; i++) {
+        if (tagValues[i] === this.value) {
+          const index = tagValues.indexOf(this.value);
+          tagValues.splice(index, 1);
+        }
+      }
+    }
+  });
 });
