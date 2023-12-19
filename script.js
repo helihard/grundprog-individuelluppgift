@@ -1,49 +1,39 @@
-import { newPostTitle, newPostBody, newPostTags, formInactive } from "./form-logic.js";
-import { compileNewPost } from "./process-data-utils.js";
+import { newPostTitle, newPostBody, clearForm, tagValues } from "./form-logic.js";
+import { renderDefaultTitle } from "./process-data-utils.js";
 
 //skapar åtkomst till element i html-filen
 const postForm = document.querySelector("#create-new-post");
-//const newPostTitle = document.querySelector("#new-title");
-//const newPostBody = document.querySelector("#new-post");
-//const newPostTags = document.querySelectorAll(".new-tag");
-const newPostTagsDiv = document.querySelector("#new-tags-div");
-const submitBtn = document.querySelector("#submit-new-post");
-
 const newPostsDiv = document.querySelector("#new-posts-div");
 const dummyPostsDiv = document.querySelector("#dummy-posts-div");
 
-let tagValues = [];
+//skapar en klass för nya inlägg
+class Post {
+  constructor(title, body, tags) {
+    //tar bort mellanslag och radbrytningar i början och slutet av titeln
+    //generera titel från inläggstexten om användaren inte angett titel
+    this.title = title.trim().length > 0 ? title.trim() : renderDefaultTitle(body);
+    //tar bort mellanslag och radbrytningar i början och slutet av inläggstexten
+    this.body = body.trim();
+    this.tags = tags;
+    this.reactions = 0;
+    this.upvoted = false;
+  }
+}
 
-newPostTags.forEach((checkbox) => {
-  checkbox.addEventListener("change", function() {
-    if (this.checked && tagValues.length < 3) {
-      tagValues.push(this.value);
-      console.log(tagValues);
-    } else if (this.checked && tagValues.length >= 3) {
-      this.checked = false;
-    } else {
-      for (let i = 0; i < tagValues.length; i++) {
-        if (tagValues[i] === this.value) {
-          const index = tagValues.indexOf(this.value);
-          tagValues.splice(index, 1);
-          console.log(tagValues);
-        }
-      }
-    }
-  });
-});
+clearForm(postForm);
 
 let posts = [];
 let localStoragePosts = localStorage.getItem("posts");
 
+//om det finns något i localStorage: hämta
 if (localStoragePosts) {
-  posts = JSON.parse(localStorage.getItem("posts"));
+  posts = JSON.parse(localStoragePosts);
 } else {
   //om det inte finns något i localStorage: hämta inlägg från dummyJSON
   posts = await fetchDummyPosts();
 }
 
-//funktion som hämtar inlägg från dummyJSON
+//hämtar inlägg från dummyJSON
 async function fetchDummyPosts() {
   const response = await fetch("https://dummyjson.com/posts?limit=5");
   const dummyData = await response.json();
@@ -51,13 +41,13 @@ async function fetchDummyPosts() {
   return dummyData.posts;
 }
 
-//skriv ut inlägg från dummyJSON på sidan
+//skriv ut inlägg från localStorage på sidan
 for (let i = 0; i < posts.length; i++) {
   let post = posts[i];
   printPost(post, dummyPostsDiv);
 }
 
-//funktion som skriver ut nytt inlägg
+//skriver ut inlägg
 function printPost(post, element) {
   const newArticle = document.createElement("article");
   const newTitle = document.createElement("h3");
@@ -66,18 +56,15 @@ function printPost(post, element) {
   newTags.classList.add("tag-div");
   const newUpvotedBtn = document.createElement("button");
   const newUpvotedCount = document.createElement("span");
-  //newArticle.style.borderBottom = "1px solid var(--darkgrey)";
-  //newArticle.style.paddingBottom = "8px";
-
-  //post.body = post.body.replace(/\\n/g, "<br />");
 
   newTitle.textContent = post.title;
-  newBody.innerText = post.body;
+  newBody.innerText = post.body //.replace(/\\n/g, "<br />");
 
   newUpvotedBtn.innerHTML = "<span class='fa-solid fa-temperature-arrow-up fa-lg'>";
   newUpvotedCount.textContent = post.reactions;
-  
+
   newArticle.append(newTitle, newBody);
+
   if (post.tags !== "") {
     post.tags.forEach((tag) => {
       const newTagSpan = document.createElement("span");
@@ -101,22 +88,15 @@ function printPost(post, element) {
     newUpvotedBtn.disabled = true;
     localStorage.setItem("posts", JSON.stringify(posts));
   });
+
   if (post.upvoted) {
     newUpvotedBtn.disabled = true;
     newUpvotedBtn.innerHTML = "<span class='fa-solid fa-fire fa-lg'>";
     newUpvotedBtn.style.color = "var(--fire)";
     newUpvotedBtn.style.cursor = "default";
-    newUpvotedBtn.classList.add("active")
+    newUpvotedBtn.classList.add("active");
   }
 }
-/*
-//när sidan laddas: 
-//finns arrayen newPostsArray redan i localStorage? 
-//om ja – parse
-//om nej – skapa newPostsArray som en tom array
-let newPostsArray = localStorage.getItem("newPosts") ? JSON.parse(localStorage.getItem("newPosts")) : [];
-//för varje item som finns i newPostsArray, skriv ut
-newPostsArray.forEach(printNewPost);*/
 
 //om submit – läs in data från formuläret
 postForm.addEventListener("submit", getFormData);
@@ -125,29 +105,15 @@ postForm.addEventListener("submit", getFormData);
 function getFormData(event) {
   event.preventDefault();
 
-  /*let post = new Post;
-  post.title = newPostTitle.value;
-  post.body = newPostBody.value;
-  post.reactions = 0;*/
-
   let title = newPostTitle.value;
   let body = newPostBody.value;
-  
-  //let checkedTags = [];
-
-  //valda taggar läggs i en array
-  /*for (let tag of newPostTags) {
-    if (tag.checked === true) { // && checkedTags.length < 3
-      checkedTags.push(tag.value);
-    }
-  }*/
-
   let tags = tagValues;
 
+  let post = new Post(title, body, tags)
+  posts.unshift(post);
+  localStorage.setItem("posts", JSON.stringify(posts));
+
   //skriv ut nytt inlägg
-  printPost(compileNewPost(title, body, tags, posts), newPostsDiv);
-  tagValues = [];
-  console.log(tagValues);
-  postForm.reset();
-  formInactive();
+  printPost(post, newPostsDiv);
+  clearForm(postForm);
 }
