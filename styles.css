@@ -79,10 +79,12 @@ textarea, input[type="text"] {
 
 textarea::placeholder {
   color: var(--darkgrey);
+  font-size: 14px;
 }
 
 input[type="text"]::placeholder {
   color: var(--darkgrey);
+  font-size: 14px;
 }
 
 input[type="text"] {
@@ -104,6 +106,10 @@ textarea:focus {
   border: 1px double var(--mint);
   outline: 1px solid transparent;
   box-shadow: 0 0 10px #719ECE;
+}
+
+#title-char-count, #body-char-count {
+  color: var(--darkgrey);
 }
 
 div, p, span {
@@ -137,7 +143,7 @@ input[type="checkbox"]:checked {
   border-radius: 10px;
 }
 
-#new-posts-div {
+#posts-div {
   display: flex;
   flex-direction: column-reverse;
 }
@@ -146,17 +152,14 @@ article {
   border-bottom: 1px solid var(--darkgrey);
   padding-bottom: 8px;
   margin-bottom: 8px;
+  font-size: 14px;
 }
 
 article:last-of-type {
   border-bottom: none;
 }
 
-#new-posts-div article {
-  border-bottom: 1px solid var(--darkgrey);
-}
-
-#new-posts-div button {
+#posts-div button {
   border: 0;
   outline: 0;
   background-color: transparent;
@@ -166,22 +169,7 @@ article:last-of-type {
   text-align: left;
 }
 
-#new-posts-div button:hover {
-  color: var(--white);
-  cursor: pointer;
-}
-
-#dummy-posts-div button {
-  border: 0;
-  outline: 0;
-  background-color: transparent;
-  color: var(--mediumgrey);
-  transition: .1s ease-in;
-  width: 30px;
-  text-align: left;
-}
-
-#dummy-posts-div button:hover {
+#posts-div button:hover {
   color: var(--white);
   cursor: pointer;
 }

@@ -3,8 +3,7 @@ import { renderDefaultTitle } from "./process-data-utils.js";
 
 //skapar åtkomst till element i html-filen
 const postForm = document.querySelector("#create-new-post");
-const newPostsDiv = document.querySelector("#new-posts-div");
-const dummyPostsDiv = document.querySelector("#dummy-posts-div");
+const postsDiv = document.querySelector("#posts-div");
 
 //skapar en klass för nya inlägg
 class Post {
@@ -44,11 +43,11 @@ async function fetchDummyPosts() {
 //skriv ut inlägg från localStorage på sidan
 for (let i = 0; i < posts.length; i++) {
   let post = posts[i];
-  printPost(post, dummyPostsDiv);
+  printPost(post);
 }
 
 //skriver ut inlägg
-function printPost(post, element) {
+function printPost(post) {
   const newArticle = document.createElement("article");
   const newTitle = document.createElement("h3");
   const newBody = document.createElement("p");
@@ -75,7 +74,7 @@ function printPost(post, element) {
     });
   }
   newArticle.append(newUpvotedBtn, newUpvotedCount);
-  element.append(newArticle);
+  postsDiv.append(newArticle);
 
   newUpvotedBtn.addEventListener("click", () => {
     post.reactions++;
@@ -110,10 +109,10 @@ function getFormData(event) {
   let tags = tagValues;
 
   let post = new Post(title, body, tags)
-  posts.unshift(post);
+  posts.push(post);
   localStorage.setItem("posts", JSON.stringify(posts));
 
   //skriv ut nytt inlägg
-  printPost(post, newPostsDiv);
+  printPost(post);
   clearForm(postForm);
 }
