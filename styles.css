@@ -87,7 +87,7 @@ td {
 
 main {
   display: grid;
-  grid-template-rows: 80px auto;;
+  grid-template-rows: 80px auto;
 }
 
 h1, h2, h3, h4 {
@@ -231,4 +231,37 @@ textarea {
 .active {
   color: var(--green);
   cursor: none;
+}
+
+search {
+  border-radius: 20px;
+  height: 40px;
+  width: 430px;
+  padding-right: 10px;
+  background-color: rgb(36, 45, 47);
+}
+
+#searchbar {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: var(--lightgrey);
+  width: 380px;
+  border: 0;
+  outline: 0;
+  padding: 5px 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(36, 45, 47);
+}
+
+#search-button {
+  background-color: rgb(36, 45, 47);
+  color: var(--lightgrey);
+  outline: 0;
+  border: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
 }

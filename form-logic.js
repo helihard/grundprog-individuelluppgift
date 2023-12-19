@@ -9,6 +9,9 @@ export const newPostTags = document.querySelectorAll(".new-tag");
 const newPostTagsDiv = document.querySelector("#new-tags-div");
 const submitBtn = document.querySelector("#submit-new-post");
 
+const searchBtn = document.querySelector("#search-button");
+const searchBar = document.querySelector("#searchbar");
+
 export function clearForm(form) {
   form.reset();
   tagValues = [];
@@ -91,4 +94,18 @@ newPostTags.forEach((checkbox) => {
       }
     }
   });
+});
+
+searchBtn.addEventListener("click", () => {
+  let search = searchBar.value;
+  window.open("https://www.google.com/search?q=" + search, "_blank");
+  searchBar.value = "";
+});
+
+searchBar.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    let search = searchBar.value;
+    window.open("https://www.google.com/search?q=" + search, "_blank");
+    searchBar.value = "";
+  }
 });
