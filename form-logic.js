@@ -36,7 +36,7 @@ newPostBody.addEventListener("focus", () => {
 
   //kollar om det finns text i textarea
   newPostBody.addEventListener("input", function () {
-    let valueToCheck = this.value; //value kanske bättre namn än field? 
+    let valueToCheck = this.value;
 
     //tar bort whitespace i början och slutet av texten
     let trimmedNewBodyValue = valueToCheck.trim();
