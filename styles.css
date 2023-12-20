@@ -187,6 +187,10 @@ article:first-of-type {
   border-bottom: none;
 }
 
+article p:first-of-type {
+  line-height: 1.5;
+}
+
 #posts-div button {
   border: 0;
   outline: 0;
@@ -234,6 +238,7 @@ textarea {
 }
 
 search {
+  margin-top: 5px;
   border-radius: 20px;
   height: 40px;
   width: 430px;
