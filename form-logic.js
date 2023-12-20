@@ -98,13 +98,15 @@ newPostTags.forEach((checkbox) => {
 
 searchBtn.addEventListener("click", () => {
   let search = searchBar.value;
-  window.open("https://www.google.com/search?q=" + search, "_blank");
-  searchBar.value = "";
+  if (searchBar.value !== "") {
+    window.open("https://www.google.com/search?q=" + search, "_blank");
+    searchBar.value = "";
+  }
 });
 
 searchBar.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    let search = searchBar.value;
+  let search = searchBar.value;
+  if (event.key === "Enter" && searchBar.value !== "") {
     window.open("https://www.google.com/search?q=" + search, "_blank");
     searchBar.value = "";
   }
