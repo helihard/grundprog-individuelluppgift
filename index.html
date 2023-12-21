@@ -27,62 +27,72 @@
       <nav>
         <p>Topics</p>
         <table>
-          <tr>
+          <tr class="topics-tab" id="all-posts" name="all">
+            <td><i class="fa-solid fa-dumpster fa-lg"></i></td>
+            <td>All topics</td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
+          </tr>
+          <tr class="topics-tab" name="hot">
+            <td><i class="fa-solid fa-dumpster-fire fa-lg" style="color:var(--fire)"></i></td>
+            <td>Hot topics</td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
+          </tr>
+          <tr class="topics-tab" name="american">
             <td><i class="fa-solid fa-road-barrier fa-lg"></i></td>
             <td>d/american</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="classic">
             <td><i class="fa-solid fa-landmark fa-lg"></i></td>
             <td>d/classic</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="crime">
             <td><i class="fa-solid fa-gun fa-lg"></i></td>
             <td>d/crime</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="english">
             <td><i class="fa-solid fa-mug-saucer fa-lg"></i></td>
             <td>d/english</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="fiction">
             <td><i class="fa-solid fa-book-skull fa-lg"></i></td>
             <td>d/fiction</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="french">
             <td><i class="fa-solid fa-wine-glass fa-lg"></i></td>
             <td>d/french</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="history">
             <td><i class="fa-solid fa-hourglass-end fa-lg"></i></td>
             <td>d/history</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="love">
             <td><i class="fa-solid fa-heart-crack fa-lg"></i></td>
             <td>d/love</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="magical">
             <td><i class="fa-solid fa-hand-sparkles fa-lg"></i></td>
             <td>d/magical</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-          <tr>
+          <tr class="topics-tab" name="mystery">
             <td><i class="fa-solid fa-mask fa-lg"></i></td>
             <td>d/mystery</td>
-            <td><i class="fa-solid fa-chevron-down"></i></td>
+            <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
         </table>        
       </nav>
       <main>
         <div>
           <form id="create-new-post" action="" method="post">
-            <h1>Add new post</h1>
+            <h1 id="add-new-post">Add new post</h1>
             <input type="text" id="new-title" name="newtitle" placeholder="Title" maxlength="70" style="display:none;">
             <span id="title-char-count" style="display:none;"></span><br>
             <textarea id="new-post" name="newbody" placeholder="What's on your mind?" maxlength="2000"></textarea>

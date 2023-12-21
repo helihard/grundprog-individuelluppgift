@@ -4,6 +4,8 @@ import { renderDefaultTitle } from "./process-data-utils.js";
 //skapar åtkomst till element i html-filen
 const postForm = document.querySelector("#create-new-post");
 const postsDiv = document.querySelector("#posts-div");
+const topics = document.querySelectorAll(".topics-tab");
+const allPostsTab = document.querySelector("#all-posts");
 
 //skapar en klass för nya inlägg
 class Post {
@@ -19,7 +21,11 @@ class Post {
   }
 }
 
-clearForm(postForm);
+window.onload = function () {
+  clearForm(postForm);
+  newPostBody.disabled = false;
+  allPostsTab.classList.add("active-tab");
+}
 
 let posts = [];
 let localStoragePosts = localStorage.getItem("posts");
@@ -34,7 +40,7 @@ if (localStoragePosts) {
 
 //hämtar inlägg från dummyJSON
 async function fetchDummyPosts() {
-  const response = await fetch("https://dummyjson.com/posts?limit=5");
+  const response = await fetch("https://dummyjson.com/posts");
   const dummyData = await response.json();
   localStorage.setItem("posts", JSON.stringify(dummyData.posts));
   return dummyData.posts;
@@ -115,4 +121,50 @@ function getFormData(event) {
   //skriv ut nytt inlägg
   printPost(post);
   clearForm(postForm);
+}
+
+//filtrering på taggar
+for (let i = 0; i < topics.length; i++) {
+  topics[i].addEventListener("click", () => {
+    let tag = topics[i].getAttribute("name");
+    let filteredTopicsArray = filterByTag(posts, tag);
+    let hotTopics = filterByUpvoted(posts);
+    inactivateTabs();
+    topics[i].classList.add("active-tab");
+    clearForm(postForm);
+
+    if (tag === "hot") {
+      newPostBody.disabled = true;
+      postsDiv.textContent = "";
+      if (hotTopics.length === 0) {
+        postsDiv.textContent = "Nothing to see here :("
+      } else {
+        printFilteredPosts(hotTopics);
+      }
+    } else if (tag === "all") {
+      newPostBody.disabled = false;
+      postsDiv.textContent = "";
+      printFilteredPosts(posts);
+    } else {
+      newPostBody.disabled = true;
+      postsDiv.textContent = "";
+      printFilteredPosts(filteredTopicsArray);
+    }
+  });
+}
+
+function filterByTag(array, tag) {
+  return array.filter((post) => post.tags.includes(tag));
+}
+
+function printFilteredPosts(array) {
+  array.forEach((post) => printPost(post));
+}
+
+function filterByUpvoted(array) {
+  return array.filter((post) => post.upvoted);
+}
+
+function inactivateTabs() {
+  topics.forEach((topic) => topic.classList.remove("active-tab"));
 }
