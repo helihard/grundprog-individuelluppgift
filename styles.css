@@ -16,28 +16,40 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   background-color: var(--bgcolor);
   color: var(--white);
 }
 
 #container {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 230px auto;
   width: 80vw;
-  padding-top: 10px;
+  height: 100%;
   padding-left: 20px;
 }
 
-nav {
-  height: 100%;
-  min-width: max-content;
-  z-index: 1000;
+header {
+  grid-column-end: span 2;
   display: grid;
-  grid-template-rows: 80px auto;
-  position: sticky;
-  top: 10px;
-  left: 0;
-  overflow: hidden;
+  grid-template-columns: 210px auto;
+  padding: 10px 0;
+  background-color: var(--bgcolor);
+  width: 100%;
+}
+
+header div:first-of-type {
+  width: 230px;
+}
+
+#logotype-div i {
+  display: none;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 nav p {
@@ -48,14 +60,23 @@ nav p {
   letter-spacing: 2px;
 }
 
+header div:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+
 table {
   border-spacing: 0;
   border-style: hidden;
+  width: 90%;
 }
 
 tr {
   border-radius: 15px;
   transition: .1s ease-in;
+  cursor: pointer;
 }
 
 tr:hover {
@@ -78,7 +99,12 @@ table tr td{
 }
 
 tr i:first-of-type {
-  padding-left: 15px;
+  margin-left: 10px;
+}
+
+tr i:last-of-type {
+  position: relative;
+  right: 0;
 }
 
 td {
@@ -86,8 +112,8 @@ td {
 }
 
 main {
-  display: grid;
-  grid-template-rows: 80px auto;
+  display: flex;
+  flex-grow: 1;
 }
 
 h1, h2, h3, h4 {
@@ -238,7 +264,8 @@ textarea {
 }
 
 search {
-  margin-top: 5px;
+  margin-left: 20px;
+  margin-top: 10px;
   border-radius: 20px;
   height: 40px;
   width: 430px;

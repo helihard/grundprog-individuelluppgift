@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Dedit – Die into everything</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,71 +12,74 @@
   </head>
   <body>
     <div id="container">
-      <nav id="sidebar">
-        <img src="deditlogo.jpg" width="200px" height="auto">
-          <p style="margin-left:15px;">Topics</p>
-          <table>
-            <tr>
-              <td><i class="fa-solid fa-road-barrier fa-lg"></i></td>
-              <td>d/american</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-landmark fa-lg"></i></td>
-              <td>d/classic</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-gun fa-lg"></i></td>
-              <td>d/crime</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-mug-saucer fa-lg"></i></td>
-              <td>d/english</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-book-skull fa-lg"></i></td>
-              <td>d/fiction</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-wine-glass fa-lg"></i></td>
-              <td>d/french</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-hourglass-end fa-lg"></i></td>
-              <td>d/history</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-heart-crack fa-lg"></i></td>
-              <td>d/love</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-hand-sparkles fa-lg"></i></td>
-              <td>d/magical</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-            <tr>
-              <td><i class="fa-solid fa-mask fa-lg"></i></td>
-              <td>d/mystery</td>
-              <td><i class="fa-solid fa-chevron-down"></i></td>
-            </tr>
-          </table>        
+      <header>
+        <div id="logotype-div">
+          <!--<i class="fa-solid fa-bars"></i>-->
+          <img src="deditlogo.jpg" width="180px" height="auto">
+        </div>
+        <search>
+          <form>
+            <button id="search-button"><span class="fa-solid fa-magnifying-glass"></span></button>
+            <input type="search" id="searchbar" placeholder="Search …" minlength="1">
+          </form>
+        </search>
+      </header>
+      <nav>
+        <p>Topics</p>
+        <table>
+          <tr>
+            <td><i class="fa-solid fa-road-barrier fa-lg"></i></td>
+            <td>d/american</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-landmark fa-lg"></i></td>
+            <td>d/classic</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-gun fa-lg"></i></td>
+            <td>d/crime</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-mug-saucer fa-lg"></i></td>
+            <td>d/english</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-book-skull fa-lg"></i></td>
+            <td>d/fiction</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-wine-glass fa-lg"></i></td>
+            <td>d/french</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-hourglass-end fa-lg"></i></td>
+            <td>d/history</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-heart-crack fa-lg"></i></td>
+            <td>d/love</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-hand-sparkles fa-lg"></i></td>
+            <td>d/magical</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-mask fa-lg"></i></td>
+            <td>d/mystery</td>
+            <td><i class="fa-solid fa-chevron-down"></i></td>
+          </tr>
+        </table>        
       </nav>
       <main>
-        <div>
-          <search>
-            <form>
-              <button id="search-button"><span class="fa-solid fa-magnifying-glass"></span></button>
-              <input type="search" id="searchbar" placeholder="Search …" minlength="1">
-            </form>
-          </search>
-        </div>
         <div>
           <form id="create-new-post" action="" method="post">
             <h1>Add new post</h1>
@@ -103,7 +106,8 @@
           <div id="posts-div"></div>
         </div>
       </main>
-    </div>
+
+    </div> <!-- end "container" -->
     <script type="module" src="script.js"></script>
   </body>
 </html>
