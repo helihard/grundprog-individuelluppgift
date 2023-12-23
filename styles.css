@@ -24,7 +24,7 @@ body {
 #container {
   display: grid;
   grid-template-columns: 230px auto;
-  width: 80vw;
+  max-width: 80vw;
   height: 100%;
   padding-left: 20px;
 }
@@ -36,6 +36,8 @@ header {
   padding: 10px 0;
   background-color: var(--bgcolor);
   width: 100%;
+  height: 65px;
+
 }
 
 header div:first-of-type {
@@ -50,6 +52,8 @@ nav {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  background-color: var(--bgcolor);
+  transition: .1s ease-in-out;
 }
 
 nav p {
@@ -272,7 +276,8 @@ search {
   margin-top: 10px;
   border-radius: 20px;
   height: 40px;
-  width: 430px;
+  max-width: 430px;
+  min-width: max-content;
   padding-right: 10px;
   background-color: rgb(36, 45, 47);
 }
@@ -281,7 +286,7 @@ search {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: var(--lightgrey);
-  width: 380px;
+  width: 75%;
   border: 0;
   outline: 0;
   padding: 5px 0;

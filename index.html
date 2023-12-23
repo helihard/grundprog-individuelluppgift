@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="styles.css" rel="stylesheet">
+    <link href="media-max700px.css" rel="stylesheet";>
   </head>
   <body>
     <div id="container">
       <header>
         <div id="logotype-div">
-          <!--<i class="fa-solid fa-bars"></i>-->
+          <i class="fa-solid fa-bars" id="hamburger"></i>
           <img src="deditlogo.jpg" width="180px" height="auto">
         </div>
         <search>
@@ -24,7 +25,7 @@
           </form>
         </search>
       </header>
-      <nav>
+      <nav style="display:none">
         <p>Topics</p>
         <table>
           <tr class="topics-tab" id="all-posts" name="all">
@@ -119,5 +120,6 @@
 
     </div> <!-- end "container" -->
     <script type="module" src="script.js"></script>
+    <script type="module" src="media.js"></script>
   </body>
 </html>
