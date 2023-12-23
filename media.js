@@ -38,7 +38,7 @@ hamburgerMenu.addEventListener("click", () => {
 
 for (let i = 0; i < topics.length; i++) {
   topics[i].addEventListener("click", () => {
-    if (navBar.style.display === "flex") {
+    if (narrowScreen.matches && navBar.style.display === "flex") {
       navBar.style.display = "none";
     }
   });
