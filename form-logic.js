@@ -1,6 +1,10 @@
+import Post from "./Post.js";
+import printPost from "./print-post.js";
+
 //logik för formuläret
 
 //skapar åtkomst till element i html-filen, de som behövs i script-filen exporteras
+export const postForm = document.querySelector("#create-new-post");
 export const newPostTitle = document.querySelector("#new-title");
 const titleCharCount = document.querySelector("#title-char-count");
 export const newPostBody = document.querySelector("#new-post");
@@ -12,8 +16,8 @@ const submitBtn = document.querySelector("#submit-new-post");
 const searchBtn = document.querySelector("#search-button");
 const searchBar = document.querySelector("#searchbar");
 
-export function clearForm(form) {
-  form.reset();
+export function clearForm() {
+  postForm.reset();
   tagValues = [];
   newPostBody.style.height = "auto";
   newPostTitle.style.display = "none";
@@ -95,6 +99,23 @@ newPostTags.forEach((checkbox) => {
     }
   });
 });
+
+//läser in data från formuläret
+export function getFormData(event, posts) {
+  event.preventDefault();
+
+  let title = newPostTitle.value;
+  let body = newPostBody.value;
+  let tags = tagValues;
+
+  let post = new Post(title, body, tags)
+  posts.push(post);
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  //skriv ut nytt inlägg
+  printPost(post);
+  clearForm();
+}
 
 searchBtn.addEventListener("click", () => {
   let search = searchBar.value;
