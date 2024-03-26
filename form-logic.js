@@ -41,6 +41,7 @@ newPostBody.addEventListener("focus", () => {
   bodyCharCount.style.display = "inline-block";
   submitBtn.style.display = "block";
 
+  submitBtn.disabled = true;
   //kollar om det finns text i textarea
   newPostBody.addEventListener("input", function () {
     let valueToCheck = this.value;
@@ -50,11 +51,11 @@ newPostBody.addEventListener("focus", () => {
 
     //om textarea inte är tom och om det inmatade inte enbart är whitespaces: visa submitknappen
     //(endast text i textarea är obligatoriskt för att kunna posta)
-    if (valueToCheck !== "" && trimmedNewBodyValue.length !== 0) {
+    if (valueToCheck.length > 0 && trimmedNewBodyValue.length !== 0) {
       submitBtn.disabled = false;
       submitBtn.style.backgroundColor = "var(--fire)";
       submitBtn.style.cursor = "pointer";
-    } else if (trimmedNewBodyValue.length === 0) {
+    } else if (valueToCheck.length === 0 && trimmedNewBodyValue.length === 0) {
       submitBtn.disabled = true;
       submitBtn.style.backgroundColor = "var(--lightgrey)";
       submitBtn.style.cursor = "default";
@@ -90,7 +91,7 @@ newPostTags.forEach((checkbox) => {
     } else if (this.checked && tagValues.length >= 3) {
       this.checked = false;
     } else {
-      for (let i = 0; i < tagValues.length; i++) {
+      for (let i = 0;i < tagValues.length;i++) {
         if (tagValues[i] === this.value) {
           const index = tagValues.indexOf(this.value);
           tagValues.splice(index, 1);

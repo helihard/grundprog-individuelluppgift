@@ -2,30 +2,43 @@
 <html>
   <head>
     <title>Dedit – Die into everything</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <link href="styles.css" rel="stylesheet">
-    <link href="responsive-nav-styles.css" rel="stylesheet";>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link href="styles.css" rel="stylesheet" />
+    <link href="responsive-nav-styles.css" rel="stylesheet" ; />
   </head>
   <body>
     <div id="container">
       <header>
         <div id="logotype-div">
           <i class="fa-solid fa-bars" id="hamburger"></i>
-          <img src="./images/deditlogo.jpg" width="180px" height="auto">
+          <img src="./images/deditlogo.jpg" width="180px" height="auto" />
         </div>
         <search>
           <form>
-            <button id="search-button"><span class="fa-solid fa-magnifying-glass"></span></button>
-            <input type="search" id="searchbar" placeholder="Search …" minlength="1">
+            <button id="search-button">
+              <span class="fa-solid fa-magnifying-glass"></span>
+            </button>
+            <input
+              type="search"
+              id="searchbar"
+              placeholder="Search …"
+              minlength="1"
+            />
           </form>
         </search>
       </header>
-      <nav style="display:none">
+      <nav style="display: none">
         <p>Topics</p>
         <table>
           <tr class="topics-tab" id="all-posts" name="all">
@@ -34,7 +47,12 @@
             <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
           <tr class="topics-tab" name="hot">
-            <td><i class="fa-solid fa-dumpster-fire fa-lg" style="color:var(--fire)"></i></td>
+            <td>
+              <i
+                class="fa-solid fa-dumpster-fire fa-lg"
+                style="color: var(--fire)"
+              ></i>
+            </td>
             <td>Hot topics</td>
             <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
@@ -88,37 +106,111 @@
             <td>d/mystery</td>
             <td><i class="fa-solid fa-chevron-right"></i></td>
           </tr>
-        </table>        
+        </table>
       </nav>
       <main>
         <div>
           <form id="create-new-post" action="" method="post">
             <h1 id="add-new-post">Add new post</h1>
-            <input type="text" id="new-title" name="newtitle" placeholder="Title" maxlength="70" style="display:none;">
-            <span id="title-char-count" style="display:none;"></span><br>
-            <textarea id="new-post" name="newbody" placeholder="What's on your mind?" maxlength="2000"></textarea>
-            <span id="body-char-count" style="display:none;"></span>
-            <div id="new-tags-div" style="display:none;">
+            <input
+              type="text"
+              id="new-title"
+              name="newtitle"
+              placeholder="Title"
+              maxlength="70"
+              style="display: none"
+            />
+            <span id="title-char-count" style="display: none"></span><br />
+            <textarea
+              id="new-post"
+              name="newbody"
+              placeholder="What's on your mind?"
+              maxlength="2000"
+            ></textarea>
+            <span id="body-char-count" style="display: none"></span>
+            <div id="new-tags-div" style="display: none">
               <h4>Choose up to three tags:</h4>
-              <input type="checkbox" class="new-tag" id="american" name="newTags[]" value="american"><label for="american">american</label>
-              <input type="checkbox" class="new-tag" id="classic" name="newTags[]" value="classic"><label for="classic">classic</label>
-              <input type="checkbox" class="new-tag" id="crime" name="newTags[]" value="crime"><label for="crime">crime</label>
-              <input type="checkbox" class="new-tag" id="english" name="newTags[]" value="english"><label for="english">english</label>
-              <input type="checkbox" class="new-tag" id="fiction" name="newTags[]" value="fiction"><label for="fiction">fiction</label>
-              <input type="checkbox" class="new-tag" id="french" name="newTags[]" value="french"><label for="french">french</label>
-              <input type="checkbox" class="new-tag" id="history" name="newTags[]" value="history"><label for="history">history</label>
-              <input type="checkbox" class="new-tag" id="love" name="newTags[]" value="love"><label for="love">love</label>
-              <input type="checkbox" class="new-tag" id="magical" name="newTags[]" value="magical"><label for="magical">magical</label>
-              <input type="checkbox" class="new-tag" id="mystery" name="newTags[]" value="mystery"><label for="mystery">mystery</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="american"
+                name="newTags[]"
+                value="american"
+              /><label for="american">american</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="classic"
+                name="newTags[]"
+                value="classic"
+              /><label for="classic">classic</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="crime"
+                name="newTags[]"
+                value="crime"
+              /><label for="crime">crime</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="english"
+                name="newTags[]"
+                value="english"
+              /><label for="english">english</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="fiction"
+                name="newTags[]"
+                value="fiction"
+              /><label for="fiction">fiction</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="french"
+                name="newTags[]"
+                value="french"
+              /><label for="french">french</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="history"
+                name="newTags[]"
+                value="history"
+              /><label for="history">history</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="love"
+                name="newTags[]"
+                value="love"
+              /><label for="love">love</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="magical"
+                name="newTags[]"
+                value="magical"
+              /><label for="magical">magical</label>
+              <input
+                type="checkbox"
+                class="new-tag"
+                id="mystery"
+                name="newTags[]"
+                value="mystery"
+              /><label for="mystery">mystery</label>
             </div>
-            <button type="submit" id="submit-new-post" style="display:none;">Submit</button>
+            <button type="submit" id="submit-new-post" style="display: none">
+              Submit
+            </button>
           </form>
-          
+
           <div id="posts-div"></div>
         </div>
       </main>
-
-    </div> <!-- end "container" -->
+    </div>
+    <!-- end "container" -->
     <script type="module" src="script.js"></script>
     <script type="module" src="responsive-nav.js"></script>
   </body>
